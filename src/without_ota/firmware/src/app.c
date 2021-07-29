@@ -256,33 +256,7 @@ void Publish_PeriodicMsg(void) {
             if (retVal != SYS_MQTT_SUCCESS) {
                 SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);
             }
-        } else {
-            publish_message_num = 1;
-#if 0
-            //char        message[32] = {0};
-            SYS_MQTT_PublishTopicCfg sMqttTopicCfg_1;
-            retVal = SYS_MQTT_FAILURE;
-
-            //reset the timer
-            g_lastPubTimeout = 0;
-
-            /* All Params other than the message are initialized by the config provided in MHC*/
-            strcpy(sMqttTopicCfg_1.topicName, "MCHP/Sample/d");
-            sMqttTopicCfg_1.topicLength = strlen("MCHP/Sample/d");
-            sMqttTopicCfg_1.retain = SYS_MQTT_DEF_PUB_RETAIN;
-            sMqttTopicCfg_1.qos = SYS_MQTT_DEF_PUB_QOS;
-
-            sprintf(message, "message_%d\r\n", PubMsgCnt);
-
-            retVal = SYS_MQTT_Publish(g_sSysMqttHandle,
-                    &sMqttTopicCfg_1,
-                    message,
-                    sizeof (message));
-            if (retVal != SYS_MQTT_SUCCESS) {
-                SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);
-            }
-#endif
-        }
+        } 
         PubMsgCnt++;
     }
 }
