@@ -49,7 +49,7 @@ extern "C" {
 
 #define     MQTT_OTA_TRIGGER_SUB_TOPIC      "../feeds/otatrigger"
 #define     MQTT_LED_CONTROL_SUB_TOPIC      "../feeds/led-control"
-#define     MQTT_LED_CONTROL_PUB_TOPIC      "../feeds/switch-state"
+#define     MQTT_SWITCH_STATE_PUB_TOPIC      "../feeds/switch-state"
     
 typedef enum
 {

@@ -64,14 +64,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 // *****************************************************************************
-char *mqtt_pub_message[] = {   "Downloading",
-                            "Update_not_available",
-                            "Image_Download_failed"};
-typedef enum{
-    DOWNLOADING=0,
-    UPDATE_NOT_AVAILABLE,
-    IMAGE_DOWNLOAD_FAILED        
-}MQTT_PUB_MESSAGE;
+#define OTA_ENABLE
 bool led_control;
 bool prev_switch_state;
 SYS_MQTT_PublishTopicCfg	sMqttTopicCfg_1;
@@ -82,11 +75,24 @@ SYS_MODULE_OBJ g_sSysMqttHandle = SYS_MODULE_OBJ_INVALID;
 SYS_MQTT_Config g_sTmpSysMqttCfg;
 static uint32_t g_lastPubTimeout = 0;
 static uint32_t PubMsgCnt = 0;
-bool mqtt_initiate_ota_check = false;
 static SYS_WIFI_CONFIG wificonfig;
+
+#ifdef OTA_ENABLE
+char *mqtt_pub_message[] = {   "Downloading",
+                            "Update_not_available",
+                            "Image_Download_failed"};
+typedef enum{
+    DOWNLOADING=0,
+    UPDATE_NOT_AVAILABLE,
+    IMAGE_DOWNLOAD_FAILED        
+}MQTT_PUB_MESSAGE;
+
+bool mqtt_initiate_ota_check = false;
 extern uint8_t mqtt_ota_trigger_status;
 extern bool mqtt_ota_complete;
 bool subscribe_next_topic;
+#endif
+
 #define MQTT_PERIOIDC_PUB_TIMEOUT   10 //Sec
 #define MQTT_PUB_TIMEOUT_CONST (MQTT_PERIOIDC_PUB_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
 
@@ -113,9 +119,11 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             psMsg->topicName[psMsg->topicLength] = 0;
             SYS_CONSOLE_PRINT("\nMqttCallback(): Msg received on Topic: %s ; Msg: %s\r\n",
                     psMsg->topicName, psMsg->message);
+#ifdef OTA_ENABLE
             if (!strncmp((char*) psMsg->message, "start", (psMsg->messageLength - 1)))
                 mqtt_initiate_ota_check = true;
-            if (!strcmp((char*) psMsg->topicName, "pranjal139/feeds/led-control")) {
+#endif
+            if (!strcmp((char*) psMsg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
                 if (!strcmp((char*) psMsg->message, "ON"))
                     led_control = true;
                 else if (!strcmp((char*) psMsg->message, "OFF"))
@@ -145,11 +153,15 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
         {
             SYS_MQTT_SubscribeConfig *psMqttSubCfg = (SYS_MQTT_SubscribeConfig *) data;
             SYS_CONSOLE_PRINT("\nMqttCallback(): Subscribed to Topic '%s'\r\n", psMqttSubCfg->topicName);
+            
+#ifdef OTA_ENABLE
             if (!strcmp(psMqttSubCfg->topicName, MQTT_OTA_TRIGGER_SUB_TOPIC)) {
                 SYS_CONSOLE_PRINT("Topic %s is subscribed, Subscribing next topic\n\r", psMqttSubCfg->topicName);
+                
                 subscribe_next_topic = true;
 
             }
+#endif
         }
             break;
 
@@ -208,13 +220,14 @@ void APP_Initialize(void) {
     SYS_CONSOLE_MESSAGE("Application: Paho MQTT Client\r\n");
 }
 
+#ifdef OTA_ENABLE
 bool checkTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut) {
     if (lastTimeOut == 0)
         return 0;
 
     return (SYS_TMR_TickCountGet() - lastTimeOut > timeOutValue);
 }
-#if 1
+
 uint8_t publish_message_num = 1;
 SYS_MQTT_PublishTopicCfg sMqttTopicCfg;
 
@@ -243,33 +256,7 @@ void Publish_PeriodicMsg(void) {
             if (retVal != SYS_MQTT_SUCCESS) {
                 SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);
             }
-        } else {
-            publish_message_num = 1;
-#if 0
-            //char        message[32] = {0};
-            SYS_MQTT_PublishTopicCfg sMqttTopicCfg_1;
-            retVal = SYS_MQTT_FAILURE;
-
-            //reset the timer
-            g_lastPubTimeout = 0;
-
-            /* All Params other than the message are initialized by the config provided in MHC*/
-            strcpy(sMqttTopicCfg_1.topicName, "MCHP/Sample/d");
-            sMqttTopicCfg_1.topicLength = strlen("MCHP/Sample/d");
-            sMqttTopicCfg_1.retain = SYS_MQTT_DEF_PUB_RETAIN;
-            sMqttTopicCfg_1.qos = SYS_MQTT_DEF_PUB_QOS;
-
-            sprintf(message, "message_%d\r\n", PubMsgCnt);
-
-            retVal = SYS_MQTT_Publish(g_sSysMqttHandle,
-                    &sMqttTopicCfg_1,
-                    message,
-                    sizeof (message));
-            if (retVal != SYS_MQTT_SUCCESS) {
-                SYS_CONSOLE_PRINT("\nPublish_PeriodicMsg(): Failed (%d)\r\n", retVal);
-            }
-#endif
-        }
+        } 
         PubMsgCnt++;
     }
 }
@@ -305,8 +292,8 @@ void APP_Tasks(void) {
 
         case APP_STATE_MODE_STA:
         {
-            strcpy(sMqttTopicCfg_1.topicName, MQTT_LED_CONTROL_PUB_TOPIC);
-            sMqttTopicCfg_1.topicLength = strlen(MQTT_LED_CONTROL_PUB_TOPIC);
+            strcpy(sMqttTopicCfg_1.topicName, MQTT_SWITCH_STATE_PUB_TOPIC);
+            sMqttTopicCfg_1.topicLength = strlen(MQTT_SWITCH_STATE_PUB_TOPIC);
             sMqttTopicCfg_1.retain = SYS_MQTT_DEF_PUB_RETAIN;
             sMqttTopicCfg_1.qos = SYS_MQTT_DEF_PUB_QOS;
 #ifdef APP_CFG_WITH_MQTT_API
@@ -325,14 +312,17 @@ void APP_Tasks(void) {
             g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
 #else    
             g_sSysMqttHandle = SYS_MQTT_Connect(NULL, MqttCallback, NULL);
+#ifdef OTA_ENABLE
             /*Registering ota callback*/
             ota_app_reg_cb();
+#endif
 #endif    
             g_appData.state = APP_STATE_MQTT_OTA_SERVICE_TASK;
             break;
         }
         case APP_STATE_MQTT_OTA_SERVICE_TASK:
         {
+#ifdef OTA_ENABLE
             /*second topic will be subscribed after first topic */
             if (subscribe_next_topic == true) {
                 subscribe_next_topic = false;
@@ -342,7 +332,7 @@ void APP_Tasks(void) {
                 strcpy(sMqttCfg_new.topicName, MQTT_LED_CONTROL_SUB_TOPIC);
                 SYS_MQTT_Subscribe(g_sSysMqttHandle, &sMqttCfg_new);
             }
-
+#endif
             /*************************Control led*******************************/
             if (led_control == true) {
                 //SYS_CONSOLE_PRINT("Switchig On LED\n\r");
@@ -368,18 +358,21 @@ void APP_Tasks(void) {
                                 "SWITCH1_STATE_RELEASED",
                                 sizeof("SWITCH1_STATE_RELEASED"));
             }
-
+#ifdef OTA_ENABLE
             Publish_PeriodicMsg();
+#endif
             SYS_MQTT_Task(g_sSysMqttHandle);
 
+#ifdef OTA_ENABLE
             /*if OTA process triggered by user*/
             if (mqtt_initiate_ota_check == true) {
 
                 g_appData.state = APP_STATE_OTA_SERVICE_TASK;
             }
+#endif
             break;
         }
-
+#ifdef OTA_ENABLE
         case APP_STATE_OTA_SERVICE_TASK:
         {
             SYS_MQTT_Task(g_sSysMqttHandle);
@@ -430,6 +423,7 @@ void APP_Tasks(void) {
                 mqtt_ota_trigger_status = MQTT_OTA_NOT_TRIGGERED;
             }
         }
+#endif
         default:
         {
             break;
