@@ -1,0 +1,14 @@
+configName: pic32mzw1
+folderName: ota_mqtt_wo_tls
+format_version: v1.0
+frameworkPath: E:\git_repo\rio_ofc_repo_3_4_1_new
+processor: PIC32MZ1025W104132
+projectName: ota_mqtt_wo_tls
+settings:
+  PackageFilter: bsp;core;crypto;cryptoauthlib;csp;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
+  CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
+  MERGE_STRATEGY: USER_RECENT
+  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.3.177\atdf\PIC32MZ1025W104132.atdf
