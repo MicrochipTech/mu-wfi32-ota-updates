@@ -30,6 +30,9 @@ This is a demo application consisting of OTA service . Application will communic
 
 5. Please provide below command on UART console :
 
+    `"wifiprov set 0 1 "GEN" 0 1 4 <SSID> <password>`
+
+    example:
     `"wifiprov set 0 1 "GEN" 0 1 4 "riodemo139" "password"`
 
 6. System will try to connect with user defined MQTt broker.
