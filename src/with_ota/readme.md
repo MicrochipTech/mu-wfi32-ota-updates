@@ -26,7 +26,7 @@ This is a demo application consisting of OTA service . Application will communic
 4. Please follow below messages on UART1 console :
     ![](images/uart1_console1.png).
 
-    ![](images/uart1_console1.png).
+    ![](images/uart1_console2.png).
 
 5. Please provide below command on UART console :
 
