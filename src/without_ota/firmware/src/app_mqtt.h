@@ -59,21 +59,21 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 /*****Subscribe topic parameters******/
 #define     MQTT_SUB_TOPIC_COUNT            1
 #define     MQTT_SUB_QOS                    1
-#define     MQTT_LED_CONTROL_SUB_TOPIC      "pranjal139/feeds/led-control"
+#define     MQTT_LED_CONTROL_SUB_TOPIC      "../feeds/led-control"
 
 /*****Publish topic parameters******/
 #define     MQTT_MAX_PUB_TOPIC                   2 
 #define     MQTT_DEF_PUB_RETAIN             false
 #define     MQTT_DEF_PUB_QOS                1
-#define     MQTT_SWITCH_STATE_PUB_TOPIC     "pranjal139/feeds/switch-state"
-#define     MQTT_APP_VERSION_PUB_TOPIC      "pranjal139/feeds/firmware-version"
+#define     MQTT_SWITCH_STATE_PUB_TOPIC     "../feeds/switch-state"
+#define     MQTT_APP_VERSION_PUB_TOPIC      "../feeds/firmware-version"
  
 /*****MQTT Broker parameters******/
 #define     MQTT_BROKER_SERVER_PORT         1883
 #define     MQTT_BROKER_CLEAN_SESSION       true
 #define     MQTT_BROKER_NAME                "io.adafruit.com"
-#define     MQTT_BROKER_USER_NAME           "pranjal139"
-#define     MQTT_BROKER_PASSWORD            "aio_UcAj23Q32fdq2YLMFLlF9FiRTgZi"
+#define     MQTT_BROKER_USER_NAME           ""
+#define     MQTT_BROKER_PASSWORD            ""
 
 
 
