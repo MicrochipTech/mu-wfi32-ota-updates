@@ -1,5 +1,5 @@
 /*******************************************************************************
-Copyright (C) 2020 released Microchip Technology Inc.  All rights reserved.
+Copyright (C) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -87,6 +87,10 @@ void SYS_MQTT_TcpClientCallback(uint32_t event, void *data, void* cookie)
         SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
     }
         break;
+        
+    case SYS_NET_EVNT_LL_INTF_DOWN:
+    case SYS_NET_EVNT_LL_INTF_UP:
+        break;
     }
 }
 
@@ -122,6 +126,7 @@ void SYS_MQTT_ProcessTimeout(SYS_MQTT_Handle *hdl, SYS_MQTT_EVENT_TYPE cbEvent, 
 {
     if (SYS_MQTT_TimerExpired(hdl) == true)
     {
+        SYS_NET_RESULT  rc = SYS_NET_FAILURE;
         if (hdl->callback_fn)
         {
             hdl->callback_fn(cbEvent,
@@ -132,7 +137,16 @@ void SYS_MQTT_ProcessTimeout(SYS_MQTT_Handle *hdl, SYS_MQTT_EVENT_TYPE cbEvent, 
 
         SYS_MQTT_ResetTimer(hdl);
 
-        SYS_MQTT_SetInstStatus(hdl, nextStatus);
+        if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                  SYS_NET_CTRL_MSG_DISCONNECT,
+                                  NULL, 0)) != SYS_NET_SUCCESS)
+        {
+            SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+            return;
+        }
+        
+        SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
     }
 }
 
@@ -206,6 +220,19 @@ SYS_MODULE_OBJ SYS_MQTT_PAHO_Open(SYS_MQTT_Config *cfg,
     }
     else
     {
+        /* Validate the Clean Session and Subscription Patams */
+        if ((cfg->sBrokerConfig.cleanSession == 0) && (cfg->subscribeCount))
+        {
+            /* 
+             ** Free Handle 
+             */
+            SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_CFG, "Invalid Param Combination - Clean Session and Subscription Count\r\n");
+
+            SYS_MQTT_FreeHandle(hdl);
+
+            return SYS_MODULE_OBJ_INVALID;            
+        }
+        
         memcpy(&hdl->sCfgInfo, cfg, sizeof (SYS_MQTT_Config));
     }
 
@@ -225,6 +252,7 @@ SYS_MODULE_OBJ SYS_MQTT_PAHO_Open(SYS_MQTT_Config *cfg,
 void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
 {
     static uint32_t connCbSent = 0;
+    static uint32_t firstConnect = 0;
     SYS_MQTT_Handle *hdl = (SYS_MQTT_Handle *) obj;
 
     if (obj == SYS_MODULE_OBJ_INVALID)
@@ -288,21 +316,25 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
     {
         int rc = 0;
         char buffer[80];
+        MQTTPacket_connectData connectData = MQTTPacket_connectData_initializer;
 
         memset(buffer, 0, sizeof (buffer));
 
-        /* Open the MQTT Connection */
-        NetworkInit(&(hdl->uVendorInfo.sPahoInfo.sPahoNetwork));
+        if((hdl->sCfgInfo.sBrokerConfig.cleanSession) || (firstConnect == 0))
+        {
+            /* Open the MQTT Connection */
+            NetworkInit(&(hdl->uVendorInfo.sPahoInfo.sPahoNetwork));
 
-        MQTTPacket_connectData connectData = MQTTPacket_connectData_initializer;
+            MQTTClientInit(&(hdl->uVendorInfo.sPahoInfo.sPahoClient),
+                           &(hdl->uVendorInfo.sPahoInfo.sPahoNetwork),
+                           5000,
+                           hdl->uVendorInfo.sPahoInfo.sendbuf,
+                           SYS_MQTT_PAHO_MAX_TX_BUFF_LEN,
+                           hdl->uVendorInfo.sPahoInfo.recvbuf,
+                           SYS_MQTT_PAHO_MAX_RX_BUFF_LEN);
 
-        MQTTClientInit(&(hdl->uVendorInfo.sPahoInfo.sPahoClient),
-                       &(hdl->uVendorInfo.sPahoInfo.sPahoNetwork),
-                       5000,
-                       hdl->uVendorInfo.sPahoInfo.sendbuf,
-                       SYS_MQTT_PAHO_MAX_TX_BUFF_LEN,
-                       hdl->uVendorInfo.sPahoInfo.recvbuf,
-                       SYS_MQTT_PAHO_MAX_RX_BUFF_LEN);
+            firstConnect++;
+        }
 
         connectData.MQTTVersion = 4; //use protocol version 3.1.1
 
@@ -322,6 +354,8 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
         connectData.clientID.cstring = (char *) &(hdl->sCfgInfo.sBrokerConfig.clientId);
 
         connectData.keepAliveInterval = hdl->sCfgInfo.sBrokerConfig.keepAliveInterval;
+		
+        connectData.cleansession = hdl->sCfgInfo.sBrokerConfig.cleanSession;
 
         if (strlen(hdl->sCfgInfo.sBrokerConfig.username))
         {
@@ -381,7 +415,7 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
 
             /* Check if the Application configured a Topic to 
              * Subscribe to while opening the MQTT Service */
-            if (hdl->sCfgInfo.subscribeCount)
+            if ((hdl->sCfgInfo.subscribeCount) && (hdl->sCfgInfo.sBrokerConfig.cleanSession))
             {
                 SYS_MQTTDEBUG_DBG_PRINT(g_AppDebugHdl, MQTT_DATA, "Subscribing to Topic = \r\n", hdl->sCfgInfo.subscribeCount, hdl->sCfgInfo.sSubscribeConfig[0].topicName);
 
@@ -391,6 +425,17 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
                                         SYS_MQTT_messageCallback)) != 0)
                 {
                     SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTSubscribe() failed (%d)\r\n", rc);
+
+                    if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                              SYS_NET_CTRL_MSG_DISCONNECT,
+                                              NULL, 0)) != SYS_NET_SUCCESS)
+                    {
+                        SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+                        return;
+                    }
+
+                    SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
 
                     return;
                 }
@@ -682,6 +727,17 @@ int32_t SYS_MQTT_Paho_CtrlMsg(SYS_MODULE_OBJ obj, SYS_MQTT_CtrlMsgType eCtrlMsgT
         {
             SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTSubscribe() Failed (%d)\r\n", rc);
 
+            if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                      SYS_NET_CTRL_MSG_DISCONNECT,
+                                      NULL, 0)) != SYS_NET_SUCCESS)
+            {
+                SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+                return SYS_MQTT_FAILURE;
+            }
+
+            SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
+
             return SYS_MQTT_FAILURE;
         }
 
@@ -742,6 +798,17 @@ int32_t SYS_MQTT_Paho_CtrlMsg(SYS_MODULE_OBJ obj, SYS_MQTT_CtrlMsgType eCtrlMsgT
         if (rc != 0)
         {
             SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTUnsubscribe failed (%d)\r\n", rc);
+
+            if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                      SYS_NET_CTRL_MSG_DISCONNECT,
+                                      NULL, 0)) != SYS_NET_SUCCESS)
+            {
+                SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+                return SYS_MQTT_FAILURE;
+            }
+
+            SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
 
             return SYS_MQTT_FAILURE;
         }
@@ -886,6 +953,17 @@ int32_t SYS_MQTT_Paho_SendMsg(SYS_MODULE_OBJ obj, SYS_MQTT_PublishTopicCfg *psTo
     if (rc != 0)
     {
         SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "MQTTPublish() Failed (%d)\r\n", rc);
+
+        if ((rc = SYS_NET_CtrlMsg(hdl->netSrvcHdl,
+                                  SYS_NET_CTRL_MSG_DISCONNECT,
+                                  NULL, 0)) != SYS_NET_SUCCESS)
+        {
+            SYS_MQTTDEBUG_ERR_PRINT(g_AppDebugHdl, MQTT_DATA, "SYS_NET_CtrlMsg() Failed (%d)\r\n", rc);
+
+            return SYS_MQTT_FAILURE;
+        }
+
+        SYS_MQTT_SetInstStatus(hdl, SYS_MQTT_STATUS_MQTT_DISCONNECTING);
 
         return SYS_MQTT_FAILURE;
     }

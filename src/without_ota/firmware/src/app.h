@@ -47,17 +47,6 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 
-#define     MQTT_OTA_TRIGGER_SUB_TOPIC      "../feeds/otatrigger"
-#define     MQTT_LED_CONTROL_SUB_TOPIC      "../feeds/led-control"
-#define     MQTT_SWITCH_STATE_PUB_TOPIC     "../feeds/switch-state"
-    
-typedef enum
-{
-    MQTT_OTA_NOT_TRIGGERED=0,
-    MQTT_OTA_UPDATED_VERSION_AVAILABLE,
-    MQTT_OTA_UPDATED_VERSION_NOT_AVAILABLE,
-    MQTT_OTA_FAILED
-}MQTT_OTA_RESULT;
 // *****************************************************************************
 /* Application states
 
@@ -72,14 +61,10 @@ typedef enum
 typedef enum
 {
     /* Application's state machine's initial state. */
-    APP_STATE_INIT_DONE=0,
-    APP_STATE_WAIT_FOR_GETCONFIG,
-    APP_STATE_MODE_AP,
-    APP_STATE_MODE_STA,
-    APP_STATE_MQTT_OTA_SERVICE_TASK,
-    APP_STATE_OTA_SERVICE_TASK,
-    APP_STATE_MQTT_SERVICE_TASK,
-    APP_STATE_WAIT_FOR_OTA_COMPLETE_TASK        
+    APP_STATE_INIT=0,
+    APP_STATE_SERVICE_TASKS,
+    /* TODO: Define states used by the application state machine. */
+
 } APP_STATES;
 
 

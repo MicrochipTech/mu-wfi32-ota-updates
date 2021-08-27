@@ -63,6 +63,8 @@ void EVIC_Initialize( void )
     IPC20SET = 0x4000000 | 0x0;  /* RFSMC:  Priority 1 / Subpriority 0 */
     IPC21SET = 0x4 | 0x0;  /* RFMAC:  Priority 1 / Subpriority 0 */
     IPC21SET = 0x40000 | 0x0;  /* RFTM0:  Priority 1 / Subpriority 0 */
+    IPC41SET = 0x40000 | 0x0;  /* CRYPTO1:  Priority 1 / Subpriority 0 */
+    IPC41SET = 0x4000000 | 0x0;  /* CRYPTO1_FAULT:  Priority 1 / Subpriority 0 */
 
 
 
@@ -114,6 +116,31 @@ void EVIC_SourceStatusClear( INT_SOURCE source )
     volatile uint32_t *IFSxCLR = (volatile uint32_t *)(IFSx + 1);
 
     *IFSxCLR = 1 << (source & 0x1f);
+}
+
+void EVIC_INT_Enable( void )
+{
+    __builtin_enable_interrupts();
+}
+
+bool EVIC_INT_Disable( void )
+{
+    uint32_t processorStatus;
+
+    /* Save the processor status and then Disable the global interrupt */
+    processorStatus = ( uint32_t )__builtin_disable_interrupts();
+
+    /* return the interrupt status */
+    return (bool)(processorStatus & 0x01);
+}
+
+void EVIC_INT_Restore( bool state )
+{
+    if (state)
+    {
+        /* restore the state of CP0 Status register before the disable occurred */
+        __builtin_enable_interrupts();
+    }
 }
 
 
