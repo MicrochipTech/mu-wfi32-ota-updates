@@ -74,7 +74,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define     MQTT_BROKER_NAME                "io.adafruit.com"
 #define     MQTT_BROKER_USER_NAME           ""
 #define     MQTT_BROKER_PASSWORD            ""
-
+#define     MQTT_BROKER_CLIENTID            ""
 
 
 

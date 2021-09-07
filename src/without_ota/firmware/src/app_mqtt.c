@@ -239,6 +239,7 @@ void APP_MQTT_Initialize(void) {
     strcpy(psMqttCfg->sBrokerConfig.brokerName, MQTT_BROKER_NAME);
     strcpy(psMqttCfg->sBrokerConfig.username, MQTT_BROKER_USER_NAME);
     strcpy(psMqttCfg->sBrokerConfig.password, MQTT_BROKER_PASSWORD);
+    strcpy(psMqttCfg->sBrokerConfig.clientId, MQTT_BROKER_CLIENTID);
     psMqttCfg->sBrokerConfig.serverPort = MQTT_BROKER_SERVER_PORT;
     psMqttCfg->sBrokerConfig.cleanSession = MQTT_BROKER_CLEAN_SESSION;
     psMqttCfg->subscribeCount = MQTT_SUB_TOPIC_COUNT;
