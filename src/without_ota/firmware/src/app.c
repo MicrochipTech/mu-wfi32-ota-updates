@@ -135,7 +135,7 @@ void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
 		static uint32_t     PubMsgCnt = 0;
 		
         /**Modified : Application version is added to periodic message***/
-		sprintf(message, "Application_version_%d\r\n", APPLICATION_VERSION);
+		sprintf(message, "{\"value\": %d}", APPLICATION_VERSION);
 		if (APP_MQTT_PublishMsg(message)== SYS_MQTT_SUCCESS)
 		{
             SYS_CONSOLE_PRINT("\nPublished Msg(%d) to Topic\r\n", PubMsgCnt); 

@@ -141,8 +141,8 @@ void APP_SWITCH_Tasks ( void )
                 
                 SYS_MQTT_Publish(g_sSysMqttHandle, 
                                 &sMqttPubTopicCfg[0],
-                                "SWITCH1_STATE_PRESSED",
-                                sizeof("SWITCH1_STATE_PRESSED"));
+                                "{\"value\": \"PRESSED\"}",
+                                strlen("{\"value\": \"PRESSED\"}"));
             }
             else if(SWITCH1_Get()  == SWITCH1_STATE_RELEASED && (prev_switch_state == SWITCH1_STATE_PRESSED))
             {
@@ -151,8 +151,8 @@ void APP_SWITCH_Tasks ( void )
                  
                 SYS_MQTT_Publish(g_sSysMqttHandle, 
                                 &sMqttPubTopicCfg[0],
-                                "SWITCH1_STATE_RELEASED",
-                                sizeof("SWITCH1_STATE_RELEASED"));
+                                "{\"value\": \"RELEASED\"}",
+                                strlen("{\"value\": \"RELEASED\"}"));
             }
             break;
         }
