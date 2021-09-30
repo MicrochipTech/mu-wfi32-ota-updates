@@ -1,0 +1,14 @@
+configName: simple_iot_application
+folderName: simple_iot_application
+format_version: v1.0
+frameworkPath: ..\..\..
+processor: PIC32MZ1025W104132
+projectName: simple_iot_application
+settings:
+  CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
+  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.4.193\atdf\PIC32MZ1025W104132.atdf
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  MERGE_STRATEGY: ALL
+  PackageFilter: bsp;classb_pic32mzw1_wfi32e01;classb_pic32mzw1_wfi32e01_bp;core;core_apps_pic32mz_w1;core_B0;crypto;cryptoauthlib;csp;csp_B0;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01;wireless_wifi;wireless_wifi_dev
+  TRUSTZONE: 'false'
