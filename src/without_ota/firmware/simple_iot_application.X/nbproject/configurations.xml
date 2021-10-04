@@ -589,7 +589,7 @@
           <itemPath>../src/config/simple_iot_application/initialization.c</itemPath>
           <itemPath>../src/config/simple_iot_application/interrupts.c</itemPath>
           <itemPath>../src/config/simple_iot_application/exceptions.c</itemPath>
-          <itemPath>../src/config/simple_iot_application/system_pmu_mldo_trim.c</itemPath>
+          <itemPath>../src/config/simple_iot_application/pmu_init.c</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f3" displayName="paho.mqtt.embedded-c" projectFiles="true">
@@ -859,7 +859,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/simple_iot_application;../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/;../src/config/simple_iot_application/library;../src/config/simple_iot_application/library/tcpip/src;../src/config/simple_iot_application/library/tcpip/src/common;../src/packs/PIC32MZ1025W104132_DFP;../src/third_party/paho.mqtt.embedded-c;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl"/>
+                  value="../src;../src/config/simple_iot_application;../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/;../src/config/simple_iot_application/library;../src/config/simple_iot_application/library/tcpip/src;../src/config/simple_iot_application/library/tcpip/src/common;../src/third_party/paho.mqtt.embedded-c;../src/third_party/wolfssl;../src/third_party/wolfssl/wolfssl"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -958,7 +958,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/simple_iot_application;../src/packs/PIC32MZ1025W104132_DFP"/>
+                  value="../src;../src/config/simple_iot_application"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

@@ -110,7 +110,7 @@ files:
   physicalPath: ../..
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 35AC2311F13454FE0F1305C6EF6C9C5D
+  userChecksum: 31113036328963AAE1DEDCD41385262F
 - generatedChecksum: null
   logicalPath: ''
   name: app_switch.c
@@ -580,13 +580,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 62951755A45BA873C9775C77F461A8DF
-- generatedChecksum: 1524B43AFE5BC4ECA2A63ADC7642C313
+- generatedChecksum: 5B8DE5DE12BFC86B3A3FAE3F9DE3AAED
   logicalPath: config/simple_iot_application
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 1524B43AFE5BC4ECA2A63ADC7642C313
+  userChecksum: 5B8DE5DE12BFC86B3A3FAE3F9DE3AAED
 - generatedChecksum: 479A727027F5AD9CBBDC717FD86D8B5E
   logicalPath: wolfcrypt
   name: integer.c
@@ -699,13 +699,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 1D0C683A87116C624525DFB733425B7D
-- generatedChecksum: EB9D2415CA36F3F63B7B51D40BA48ABD
+- generatedChecksum: A84EEE4C9F0D3949314BFF0A56569D93
   logicalPath: config/simple_iot_application/peripheral/clk
   name: plib_clk.c
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: SOURCE
-  userChecksum: EB9D2415CA36F3F63B7B51D40BA48ABD
+  userChecksum: A84EEE4C9F0D3949314BFF0A56569D93
 - generatedChecksum: 2FEFEA0D4E94F5A5F3D76BAEC3D602E5
   logicalPath: config/simple_iot_application/peripheral/coretimer
   name: plib_coretimer.c
@@ -748,6 +748,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 3A8085264EC615D280B577EF5F3F4AE5
+- generatedChecksum: 290251D6FF0845DC4259E0EF74DCB657
+  logicalPath: config/simple_iot_application
+  name: pmu_init.c
+  physicalPath: ''
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 290251D6FF0845DC4259E0EF74DCB657
 - generatedChecksum: BE4CB7367E5A5B3DDA671207F469CA45
   logicalPath: wolfcrypt
   name: poly1305.c
@@ -909,13 +916,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 9623CA5186E14AC2A2EAC7C250682BFC
-- generatedChecksum: B272B2EB06FC4376B9EEB88671E27D74
+- generatedChecksum: 844B5535563F8399C03E2105085D14EB
   logicalPath: config/simple_iot_application/system/command
   name: sys_command.c
   physicalPath: system/command/src
   security: NON_SECURE
   type: SOURCE
-  userChecksum: B272B2EB06FC4376B9EEB88671E27D74
+  userChecksum: 844B5535563F8399C03E2105085D14EB
 - generatedChecksum: 20C22A19D5DC74DEBFC4CCCA83B6F603
   logicalPath: config/simple_iot_application/system/console
   name: sys_console.c
@@ -1042,13 +1049,6 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 73953E96E08B075980D5A933ED18C28E
-- generatedChecksum: 9A49A2339A0774ACCBC2178A9EE76586
-  logicalPath: config/simple_iot_application
-  name: system_pmu_mldo_trim.c
-  physicalPath: ''
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: 9A49A2339A0774ACCBC2178A9EE76586
 - generatedChecksum: BA8C6DDBA769D97A483C96728AFA2B78
   logicalPath: config/simple_iot_application
   name: tasks.c
@@ -1608,7 +1608,7 @@ files:
   physicalPath: ../..
   security: NON_SECURE
   type: HEADER
-  userChecksum: 864CB0452876B308375C4CC72FF387F7
+  userChecksum: B897FF97BF2881765A69B19A5149C33D
 - generatedChecksum: null
   logicalPath: ''
   name: app_switch.h
@@ -1763,7 +1763,7 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 15AB6693CC2E1EE7AB845EE42A6AC762
-- generatedChecksum: 506A2ABBE2829E5520C057BC0B385287
+- generatedChecksum: 1AF0E9034CFBE562AF6017801BF715CC
   logicalPath: config/simple_iot_application
   name: configuration.h
   physicalPath: ''
@@ -2722,13 +2722,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2E757CB67732FBEE91D6E85E70DDF36E
-- generatedChecksum: 9238A3759A2C6748FE493370DE35B5E0
+- generatedChecksum: F4C7B8A950B1D12FF6EC959D0A996B5B
   logicalPath: config/simple_iot_application/peripheral/clk
   name: plib_clk.h
   physicalPath: peripheral/clk
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9238A3759A2C6748FE493370DE35B5E0
+  userChecksum: F4C7B8A950B1D12FF6EC959D0A996B5B
 - generatedChecksum: 49EF1C56EBDEE25C8E46F029F020AB21
   logicalPath: config/simple_iot_application/peripheral/coretimer
   name: plib_coretimer.h
@@ -2743,13 +2743,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2B5072810107E051495C4B6379DEDA4E
-- generatedChecksum: 3C52CEA231878411E3950ADD556AF20C
+- generatedChecksum: BFA90471A89ED563A27D8E3D12373D5E
   logicalPath: config/simple_iot_application/peripheral/gpio
   name: plib_gpio.h
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3C52CEA231878411E3950ADD556AF20C
+  userChecksum: BFA90471A89ED563A27D8E3D12373D5E
 - generatedChecksum: FBB2DEFAADE0488ACAFA5C5FB807B149
   logicalPath: config/simple_iot_application/peripheral/nvm
   name: plib_nvm.h
@@ -3401,13 +3401,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 93955E68585F91EE382E3EFCEDB120EE
-- generatedChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
+- generatedChecksum: CAC44960D20AEC03CF4B325A1CD2877C
   logicalPath: config/simple_iot_application
   name: toolchain_specifics.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: FA212DEAE39D4E86EF4E6CB440610FE9
+  userChecksum: CAC44960D20AEC03CF4B325A1CD2877C
 - generatedChecksum: CA8D9CC28FDE2D7169ED3DD85B3599A4
   logicalPath: wolfcrypt
   name: types.h
@@ -3625,13 +3625,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: CFA727A2AB910B5B462D51A388146811
-- generatedChecksum: 38B8D278EA69C81FF16A6EEA4989D1D1
+- generatedChecksum: C24B1DDDFF40F7DDFC8B469DD39FDEDE
   logicalPath: config/simple_iot_application
   name: p32MZ1025W104132.ld
   physicalPath: ''
   security: NON_SECURE
   type: LINKER
-  userChecksum: 38B8D278EA69C81FF16A6EEA4989D1D1
+  userChecksum: C24B1DDDFF40F7DDFC8B469DD39FDEDE
 - generatedChecksum: D0A155C957A5AB326FFCFB27C332B88A
   logicalPath: wolfcrypt
   name: evp.c
@@ -3687,7 +3687,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/simple_iot_application;../src/packs/PIC32MZ1025W104132_DFP;
+  value: ../src;../src/config/simple_iot_application;
 - append: false
   category: C32
   delimiter: ''
@@ -3735,7 +3735,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/simple_iot_application;../src/packs/PIC32MZ1025W104132_DFP;
+  value: ../src;../src/config/simple_iot_application;
 - append: false
   category: C32CPP
   delimiter: ''

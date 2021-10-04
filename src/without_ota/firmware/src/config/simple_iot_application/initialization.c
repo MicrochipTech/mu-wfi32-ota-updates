@@ -138,6 +138,10 @@
 #pragma config SOSCEN =    OFF
 
 
+/*** FCPN0 ***/
+#pragma config CP =    OFF
+
+
 
 
 // *****************************************************************************
@@ -690,8 +694,8 @@ void SYS_Initialize ( void* data )
 
 
   
+    PMU_Initialize();
     CLK_Initialize();
-	SYS_PMU_MLDO_TRIM();
 
     /* Configure Wait States */
     PRECONbits.PFMWS = 5;
