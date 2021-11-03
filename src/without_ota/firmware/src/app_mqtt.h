@@ -57,7 +57,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 /**Modified : Included various MACRO for MQTT configuration***/ 
 /*****Subscribe topic parameters******/
-#define     MQTT_SUB_TOPIC_COUNT            0
 #define     MQTT_SUB_QOS                    1
 #define     MQTT_LED_CONTROL_SUB_TOPIC      "../feeds/led-control"
 #define     MQTT_OTA_TRIGGER_SUB_TOPIC      "../feeds/ota-trigger"

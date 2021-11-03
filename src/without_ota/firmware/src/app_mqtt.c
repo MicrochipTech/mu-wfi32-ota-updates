@@ -264,8 +264,6 @@ void APP_MQTT_Tasks(void) {
     switch (g_appMqttData.state){
         case APP_MQTT_STATE_CONNECTING:
             if (g_appMqttData.mqtt_is_connected){
-                g_appMqttData.led_control_topic_is_subscribed = false;
-                g_appMqttData.ota_control_topic_is_subscribed = false;
                 APP_MQTT_Subscribe(MQTT_LED_CONTROL_SUB_TOPIC,1);
                 g_appMqttData.state = APP_MQTT_STATE_SUBSCRIBE_LED_CONTROL;
             }
@@ -337,7 +335,7 @@ void APP_MQTT_Connect(void){
     strcpy(psMqttCfg->sBrokerConfig.clientId, MQTT_BROKER_CLIENTID);
     psMqttCfg->sBrokerConfig.serverPort = MQTT_BROKER_SERVER_PORT;
     psMqttCfg->sBrokerConfig.cleanSession = MQTT_BROKER_CLEAN_SESSION;
-    psMqttCfg->subscribeCount = MQTT_SUB_TOPIC_COUNT;
+    psMqttCfg->subscribeCount = 0;
     g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
 #else    
     g_sSysMqttHandle = SYS_MQTT_Connect(NULL, /* NULL value means that the MHC configuration should be used for this connection */
