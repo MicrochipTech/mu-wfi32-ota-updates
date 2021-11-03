@@ -65,7 +65,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 
-volatile APP_DATA g_appData;
+volatile APP_MQTT_DATA g_appMqttData;
 
 SYS_MODULE_OBJ g_sSysMqttHandle = SYS_MODULE_OBJ_INVALID;
 SYS_MQTT_Config g_sTmpSysMqttCfg;
@@ -129,6 +129,10 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             SYS_CONSOLE_PRINT("\nMqttCallback(): Msg received on Topic: %s ; Msg: %s\r\n",
                     psMsg->topicName, psMsg->message);
             
+            //ota
+            if (!strncmp((char*) psMsg->message, "1", (psMsg->messageLength - 1)))
+                g_appMqttData.mqtt_initiate_ota_check = true;
+            
             /***Modified : Included LED control message***/
             if (!strcmp((char*) psMsg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
                 if (!strcmp((char*) psMsg->message, "ON"))
@@ -146,6 +150,8 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
         {
             /***Modified : Added console print ***/
             SYS_CONSOLE_PRINT("\nMqttCallback(): MQTT Disconnected\r\n");
+            SYS_MQTT_Disconnect(g_sSysMqttHandle);
+            g_appMqttData.mqtt_is_connected = false;
         }
         break;
 
@@ -153,6 +159,7 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
         {
             /***Modified : Added console print ***/
             SYS_CONSOLE_PRINT("\nMqttCallback(): MQTT Connected\r\n");
+            g_appMqttData.mqtt_is_connected = true;
         }
         break;
 
@@ -161,6 +168,15 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             /***Modified : Added console print ***/
             SYS_MQTT_SubscribeConfig *psMqttSubCfg = (SYS_MQTT_SubscribeConfig *) data;
             SYS_CONSOLE_PRINT("\nMqttCallback(): Subscribed to Topic '%s'\r\n", psMqttSubCfg->topicName);
+            
+            if (!strcmp((char*) psMqttSubCfg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
+                g_appMqttData.led_control_topic_is_subscribed = true;
+            }
+            
+            if (!strcmp((char*) psMqttSubCfg->topicName, MQTT_OTA_TRIGGER_SUB_TOPIC)) {
+                g_appMqttData.ota_control_topic_is_subscribed = true;
+            }
+          
         }
         break;
 
@@ -223,7 +239,86 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
  */
 void APP_MQTT_Initialize(void) {
 
-	/*
+    APP_MQTT_Connect();
+
+    /* Place the MQTT App state machine in its initial state. */
+    g_appMqttData.state = APP_MQTT_STATE_CONNECTING;
+    g_appMqttData.mqtt_is_connected = false;
+    g_appMqttData.led_control_topic_is_subscribed = false;
+    g_appMqttData.ota_control_topic_is_subscribed = false;
+    g_appMqttData.mqtt_initiate_ota_check = false;
+
+}
+
+/******************************************************************************
+  Function:
+    void APP_MQTT_Tasks ( void )
+
+  Remarks:
+    See prototype in app.h.
+ */
+void APP_MQTT_Tasks(void) {
+
+    SYS_MQTT_Task(g_sSysMqttHandle);
+    
+    switch (g_appMqttData.state){
+        case APP_MQTT_STATE_CONNECTING:
+            if (g_appMqttData.mqtt_is_connected){
+                g_appMqttData.led_control_topic_is_subscribed = false;
+                g_appMqttData.ota_control_topic_is_subscribed = false;
+                APP_MQTT_Subscribe(MQTT_LED_CONTROL_SUB_TOPIC,1);
+                g_appMqttData.state = APP_MQTT_STATE_SUBSCRIBE_LED_CONTROL;
+            }
+            break;
+        case APP_MQTT_STATE_SUBSCRIBE_LED_CONTROL:
+            if (g_appMqttData.led_control_topic_is_subscribed){
+                APP_MQTT_Subscribe(MQTT_OTA_TRIGGER_SUB_TOPIC,1);
+                g_appMqttData.state = APP_MQTT_STATE_SUBSCRIBE_OTA_TRIGGER;
+            }
+            break;
+        case APP_MQTT_STATE_SUBSCRIBE_OTA_TRIGGER:
+            if (g_appMqttData.ota_control_topic_is_subscribed){
+                g_appMqttData.state = APP_MQTT_STATE_PUB_SUB;
+            }
+            break;
+        case APP_MQTT_STATE_PUB_SUB:
+            if (g_appMqttData.mqtt_is_connected == false){
+                APP_MQTT_Connect();
+                g_appMqttData.state = APP_MQTT_STATE_CONNECTING;
+                g_appMqttData.mqtt_is_connected = false;
+                g_appMqttData.led_control_topic_is_subscribed = false;
+                g_appMqttData.ota_control_topic_is_subscribed = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+/******************************************************************************
+  Function:
+    int32_t APP_MQTT_GetStatus ( void *)
+
+  Remarks:
+    See prototype in app.h.
+ */
+int32_t APP_MQTT_GetStatus(void *p) {
+
+    return SYS_MQTT_GetStatus(g_sSysMqttHandle);
+}
+
+int32_t APP_MQTT_Subscribe(const char *topic, uint8_t qos) {
+    SYS_MQTT_SubscribeConfig    sSubCfg;
+    memset(&sSubCfg, 0, sizeof(sSubCfg));
+    sSubCfg.qos = 1;
+    strcpy(sSubCfg.topicName, topic);
+    return SYS_MQTT_Subscribe(g_sSysMqttHandle, &sSubCfg);
+}
+
+void APP_MQTT_Connect(void){
+    
+    /*
 	** For more details check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
 	*/
 #ifdef APP_CFG_WITH_MQTT_API
@@ -243,41 +338,14 @@ void APP_MQTT_Initialize(void) {
     psMqttCfg->sBrokerConfig.serverPort = MQTT_BROKER_SERVER_PORT;
     psMqttCfg->sBrokerConfig.cleanSession = MQTT_BROKER_CLEAN_SESSION;
     psMqttCfg->subscribeCount = MQTT_SUB_TOPIC_COUNT;
-    psMqttCfg->sSubscribeConfig[0].qos = MQTT_SUB_QOS;
-    strcpy(psMqttCfg->sSubscribeConfig[0].topicName, MQTT_LED_CONTROL_SUB_TOPIC);
     g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
 #else    
     g_sSysMqttHandle = SYS_MQTT_Connect(NULL, /* NULL value means that the MHC configuration should be used for this connection */
 										MqttCallback, 
 										NULL);
-#endif    
+#endif
+    
 }
-
-/******************************************************************************
-  Function:
-    void APP_MQTT_Tasks ( void )
-
-  Remarks:
-    See prototype in app.h.
- */
-void APP_MQTT_Tasks(void) {
-
-    SYS_MQTT_Task(g_sSysMqttHandle);
-}
-
-/******************************************************************************
-  Function:
-    int32_t APP_MQTT_GetStatus ( void *)
-
-  Remarks:
-    See prototype in app.h.
- */
-int32_t APP_MQTT_GetStatus(void *p) {
-
-    return SYS_MQTT_GetStatus(g_sSysMqttHandle);
-}
-
-
 /*******************************************************************************
  End of File
  */
