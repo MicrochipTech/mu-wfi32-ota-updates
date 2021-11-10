@@ -56,7 +56,7 @@
 */
 
 APP_OTA_MQTT_DATA app_ota_mqttData;
-bool mqtt_initiate_ota_check;
+extern APP_MQTT_DATA g_appMqttData;
 extern OTA_STATUS ota_status;
 extern bool mqtt_ota_complete;
 
@@ -149,7 +149,7 @@ void APP_OTA_MQTT_Tasks ( void )
         {
             
             /*if OTA process triggered by user*/
-            if (mqtt_initiate_ota_check == true) {
+            if (g_appMqttData.mqtt_initiate_ota_check == true) {
 
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_UPDATE_CHECK_TASKS;
             }
@@ -167,7 +167,7 @@ void APP_OTA_MQTT_Tasks ( void )
                 //sprintf(message, "{\"value\": %d}", APPLICATION_VERSION);
                 APP_MQTT_PublishMsg("OTA_not_initiated");
                 //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, "OTA_not_initiated", 17);
-                mqtt_initiate_ota_check = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
             }
             break;
@@ -188,7 +188,7 @@ void APP_OTA_MQTT_Tasks ( void )
                 /*if update available below lines will not be executed*/
                 mqtt_ota_complete = false;
                 ota_status = OTA_NOT_TRIGGERED;
-                mqtt_initiate_ota_check = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
 
             }
         }
@@ -197,7 +197,7 @@ void APP_OTA_MQTT_Tasks ( void )
         {
             if (mqtt_ota_complete == true) {
                 mqtt_ota_complete = false;
-                mqtt_initiate_ota_check = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
                 
                 if(ota_status == OTA_FAILED){
                     APP_MQTT_PublishMsg("Image_Download_failed");
