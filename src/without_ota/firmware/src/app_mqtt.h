@@ -132,6 +132,7 @@ typedef struct
     bool led_control_topic_is_subscribed;
     bool ota_control_topic_is_subscribed;
     bool mqtt_is_connected;
+    bool led_control;
 
 } APP_MQTT_DATA;
 

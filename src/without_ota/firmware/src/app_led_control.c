@@ -52,6 +52,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include "app_led_control.h"
 #include "definitions.h"
+#include "app_mqtt.h"
 
 
 // *****************************************************************************
@@ -60,7 +61,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-extern bool led_control;
+extern APP_MQTT_DATA g_appMqttData;
 
 
 // *****************************************************************************
@@ -158,7 +159,7 @@ void APP_LED_CONTROL_Tasks ( void )
         case APP_LED_CONTROL_STATE_SERVICE_TASKS:
         {
             /*************************Control led*******************************/
-            if (led_control == true) {
+            if (g_appMqttData.led_control == true) {
                 //SYS_CONSOLE_PRINT("Switchig On LED\n\r");
                 LED_RED_On();
             } else {

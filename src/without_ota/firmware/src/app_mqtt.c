@@ -70,8 +70,6 @@ volatile APP_MQTT_DATA g_appMqttData;
 SYS_MODULE_OBJ g_sSysMqttHandle = SYS_MODULE_OBJ_INVALID;
 SYS_MQTT_Config g_sTmpSysMqttCfg;
 
-/**Modified : Included variable to control LED, this is extern for app_led_control.c***/ 
-bool led_control;
 
 /**Modified : Included MACRO to support configuration using MQTT APIs.***/ 
 #define APP_CFG_WITH_MQTT_API
@@ -136,9 +134,9 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             /***Modified : Included LED control message***/
             if (!strcmp((char*) psMsg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
                 if (!strcmp((char*) psMsg->message, "ON"))
-                    led_control = true;
+                    g_appMqttData.led_control = true;
                 else if (!strcmp((char*) psMsg->message, "OFF"))
-                    led_control = false;
+                    g_appMqttData.led_control = false;
                 else {
                     /*Do nothing*/
                 }
@@ -247,6 +245,7 @@ void APP_MQTT_Initialize(void) {
     g_appMqttData.led_control_topic_is_subscribed = false;
     g_appMqttData.ota_control_topic_is_subscribed = false;
     g_appMqttData.mqtt_initiate_ota_check = false;
+    g_appMqttData.led_control = false;
 
 }
 
@@ -287,6 +286,7 @@ void APP_MQTT_Tasks(void) {
                 g_appMqttData.led_control_topic_is_subscribed = false;
                 g_appMqttData.ota_control_topic_is_subscribed = false;
                 g_appMqttData.mqtt_initiate_ota_check = false;
+                g_appMqttData.led_control = false;
             }
             break;
         default:
