@@ -127,10 +127,6 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             SYS_CONSOLE_PRINT("\nMqttCallback(): Msg received on Topic: %s ; Msg: %s\r\n",
                     psMsg->topicName, psMsg->message);
             
-            //ota
-            if (!strncmp((char*) psMsg->message, "1", (psMsg->messageLength - 1)))
-                g_appMqttData.mqtt_initiate_ota_check = true;
-            
             /***Modified : Included LED control message***/
             if (!strcmp((char*) psMsg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
                 if (!strcmp((char*) psMsg->message, "ON"))
@@ -141,6 +137,13 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
                     /*Do nothing*/
                 }
             }
+            
+            /***Modified : Included OTA control message***/
+            if (!strcmp((char*) psMsg->topicName, MQTT_OTA_TRIGGER_SUB_TOPIC)) {
+                if (!strncmp((char*) psMsg->message, "1", (psMsg->messageLength - 1)))
+                    g_appMqttData.mqtt_initiate_ota_check = true;
+            }
+            
         }
         break;
 
