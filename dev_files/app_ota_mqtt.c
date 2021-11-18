@@ -189,7 +189,7 @@ void APP_OTA_MQTT_Tasks ( void )
                 mqtt_ota_complete = false;
                 ota_status = OTA_NOT_TRIGGERED;
                 g_appMqttData.mqtt_initiate_ota_check = false;
-
+                break;
             }
         }
         
@@ -199,13 +199,26 @@ void APP_OTA_MQTT_Tasks ( void )
                 mqtt_ota_complete = false;
                 g_appMqttData.mqtt_initiate_ota_check = false;
                 
-                if(ota_status == OTA_FAILED){
-                    APP_MQTT_PublishMsg("Image_Download_failed");
-                    //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, "Image_Download_failed", 22);
-                    app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                switch(ota_status){
+                    case OTA_FAILED:
+                        APP_MQTT_PublishMsg("Image_Download_failed");
+                        app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                        ota_status = OTA_NOT_TRIGGERED;
+                        break;
+                    case OTA_SUCCESS:
+                        APP_MQTT_PublishMsg("OTA_Success: Restarting");
+                        if(SYS_OTA_SUCCESS == SYS_OTA_CtrlMsg(SYS_OTA_TRIGGER_SYSTEM_RESET, NULL, NULL)){
+                            while(1);   // wait for reset
+                        }else{
+                            app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                            ota_status = OTA_NOT_TRIGGERED;
+                        }
+                        break;
+                    default:
+                        break;      
                 }
-                ota_status = OTA_NOT_TRIGGERED;
             }
+            break;
         }
 
         /* TODO: implement your application state machine.*/

@@ -172,6 +172,7 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
             /*Do not use API call from here. Use variables to get the status*/
             SYS_CONSOLE_PRINT("SYS_OTA_DB_ENTRY_SUCCESS\r\n");
             mqtt_ota_complete = true;
+            ota_status = OTA_SUCCESS;
             break;
         }
         case SYS_OTA_IMAGE_ERASE_FAILED:
