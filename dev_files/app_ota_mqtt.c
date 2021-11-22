@@ -184,6 +184,8 @@ void APP_OTA_MQTT_Tasks ( void )
                     //sprintf(message, "{\"value\": %d}", APPLICATION_VERSION);
                     APP_MQTT_PublishMsg("OTA_not_initiated");
                     //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, "OTA_not_initiated", 17);
+                    mqtt_ota_complete = false;
+                    ota_status = OTA_NOT_TRIGGERED;
                     g_appMqttData.mqtt_initiate_ota_check = false;
                     app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
                 }
