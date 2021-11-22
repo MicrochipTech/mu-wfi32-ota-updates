@@ -176,10 +176,17 @@ void APP_OTA_MQTT_Tasks ( void )
         case APP_OTA_MQTT_STATE_WAIT_FOR_UPDATE_CHECK_COMPLETE:
         {
             if (ota_status == OTA_UPDATED_VERSION_AVAILABLE) {
-                APP_MQTT_PublishMsg(mqtt_pub_message[DOWNLOADING]);
-                //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, mqtt_pub_message[DOWNLOADING], strlen(mqtt_pub_message[DOWNLOADING]));
-                app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_FOR_OTA_COMPLETE_TASK;
-                /*Go to next state*/
+                if (SYS_OTA_CtrlMsg(SYS_OTA_INITIATE_OTA, NULL, 0) == SYS_OTA_SUCCESS) {
+                    //SYS_CONSOLE_PRINT("OTA update check initiated successfully \r\n");
+                    APP_MQTT_PublishMsg(mqtt_pub_message[DOWNLOADING]);
+                    app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_FOR_OTA_COMPLETE_TASK;
+                } else {
+                    //sprintf(message, "{\"value\": %d}", APPLICATION_VERSION);
+                    APP_MQTT_PublishMsg("OTA_not_initiated");
+                    //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, "OTA_not_initiated", 17);
+                    g_appMqttData.mqtt_initiate_ota_check = false;
+                    app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                }
                 break;
             } else if (ota_status == OTA_UPDATED_VERSION_NOT_AVAILABLE) {
                 APP_MQTT_PublishMsg(mqtt_pub_message[UPDATE_NOT_AVAILABLE]);
