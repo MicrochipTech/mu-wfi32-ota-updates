@@ -216,7 +216,7 @@ void APP_OTA_MQTT_Tasks ( void )
                         break;
                     case OTA_SUCCESS:
                         APP_MQTT_PublishMsg("OTA_Success: Restarting");
-                        if(SYS_OTA_SUCCESS == SYS_OTA_CtrlMsg(SYS_OTA_TRIGGER_SYSTEM_RESET, NULL, NULL)){
+                        if(SYS_OTA_SUCCESS == SYS_OTA_CtrlMsg(SYS_OTA_TRIGGER_SYSTEM_RESET, NULL, 0)){
                             while(1);   // wait for reset
                         }else{
                             app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
