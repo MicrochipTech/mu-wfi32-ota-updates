@@ -65,8 +65,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
-/**Modified : Application version is added ***/
-#define APPLICATION_VERSION     1
 
 #ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
 static uint32_t     g_lastPubTimeout = 0;
@@ -74,6 +72,7 @@ static uint32_t     g_lastPubTimeout = 0;
 #define MQTT_PUB_TIMEOUT_CONST (MQTT_PERIOIDC_PUB_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
 #endif
 
+extern SYS_OTA_Config g_SysOtaConfig;
 
 // *****************************************************************************
 /* Application Data
@@ -135,8 +134,8 @@ void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
 		static uint32_t     PubMsgCnt = 0;
 		
         /**Modified : Application version is added to periodic message***/
-		sprintf(message, "{\"value\": %d}", APPLICATION_VERSION);
-		if (APP_MQTT_PublishMsg(message)== SYS_MQTT_SUCCESS)
+		sprintf(message, "{\"value\": %d}", g_SysOtaConfig.app_version);
+		if (APP_MQTT_PublishMsg(message) == SYS_MQTT_SUCCESS)
 		{
             SYS_CONSOLE_PRINT("\nPublished Msg(%d) to Topic\r\n", PubMsgCnt); 
 			PubMsgCnt++;
