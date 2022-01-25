@@ -59,6 +59,9 @@ APP_OTA_MQTT_DATA app_ota_mqttData;
 extern APP_MQTT_DATA g_appMqttData;
 extern OTA_STATUS ota_status;
 extern bool mqtt_ota_complete;
+static uint32_t  g_waitSystemResetTriggerTimeout = 0;
+#define WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT   1   // in seconds
+#define WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT_CONST (WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
 
 // *****************************************************************************
 // *****************************************************************************
@@ -194,8 +197,10 @@ void APP_OTA_MQTT_Tasks ( void )
                         ota_status = OTA_NOT_TRIGGERED;
                         break;
                     case OTA_SUCCESS:
-                        app_ota_mqttData.state = APP_OTA_MQTT_STATE_TRIGGER_SYSTEM_RESET;
+                        app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_TRIGGER_SYSTEM_RESET;
                         APP_MQTT_PublishMsg("OTA_Success: Restarting");
+                        SYS_CONSOLE_PRINT("\r\nOTA Success: Restarting...\r\n");
+                        g_waitSystemResetTriggerTimeout = SYS_TMR_TickCountGet();
                         break;
                     default:
                         break;      
@@ -204,8 +209,19 @@ void APP_OTA_MQTT_Tasks ( void )
             break;
         }
         
+        case APP_OTA_MQTT_STATE_WAIT_TRIGGER_SYSTEM_RESET:
+        {
+            // delay x second to allow SYS_PRINT message to be displayed before system is reset
+            if (SYS_TMR_TickCountGet() - g_waitSystemResetTriggerTimeout > WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT_CONST)
+            {
+                app_ota_mqttData.state = APP_OTA_MQTT_STATE_TRIGGER_SYSTEM_RESET;
+            }
+            break;
+        }
+        
         case APP_OTA_MQTT_STATE_TRIGGER_SYSTEM_RESET:
         {
+            // Must continue to run the OTA state machine until it's idle
             if(SYS_OTA_SUCCESS == SYS_OTA_CtrlMsg(SYS_OTA_TRIGGER_SYSTEM_RESET, NULL, 0)){
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_SYSTEM_RESET;
             }
