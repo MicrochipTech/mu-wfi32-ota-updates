@@ -56,19 +56,13 @@
 */
 
 APP_OTA_MQTT_DATA app_ota_mqttData;
-bool mqtt_initiate_ota_check;
-extern uint8_t mqtt_ota_trigger_status;
+extern APP_MQTT_DATA g_appMqttData;
+extern OTA_STATUS ota_status;
 extern bool mqtt_ota_complete;
+static uint32_t  g_waitSystemResetTriggerTimeout = 0;
+#define WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT   1   // in seconds
+#define WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT_CONST (WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
 
-char *mqtt_pub_message[] = {   "Downloading",
-                            "Update_not_available",
-                            "Image_Download_failed"};
-
-typedef enum{
-    DOWNLOADING=0,
-    UPDATE_NOT_AVAILABLE,
-    IMAGE_DOWNLOAD_FAILED        
-}MQTT_PUB_MESSAGE;
 // *****************************************************************************
 // *****************************************************************************
 // Section: Application Callback Functions
@@ -135,7 +129,6 @@ void APP_OTA_MQTT_Tasks ( void )
         {
             bool appInitialized = true;
 
-
             if (appInitialized)
             {
                 /*Registering ota callback*/
@@ -146,11 +139,9 @@ void APP_OTA_MQTT_Tasks ( void )
         }
 
         case APP_OTA_MQTT_STATE_SERVICE_TASKS:
-        {
-            
+        { 
             /*if OTA process triggered by user*/
-            if (mqtt_initiate_ota_check == true) {
-
+            if (g_appMqttData.mqtt_initiate_ota_check == true) {
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_UPDATE_CHECK_TASKS;
             }
             break;
@@ -158,16 +149,11 @@ void APP_OTA_MQTT_Tasks ( void )
         
         case APP_OTA_MQTT_STATE_UPDATE_CHECK_TASKS:
         {
-            //SYS_MQTT_Task(g_sSysMqttHandle);
-
             if (SYS_OTA_CtrlMsg(SYS_OTA_UPDATECHCK, NULL, 0) == SYS_OTA_SUCCESS) {
-                //SYS_CONSOLE_PRINT("OTA update check initiated successfully \r\n");
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_FOR_UPDATE_CHECK_COMPLETE;
             } else {
-                //sprintf(message, "{\"value\": %d}", APPLICATION_VERSION);
                 APP_MQTT_PublishMsg("OTA_not_initiated");
-                //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, "OTA_not_initiated", 17);
-                mqtt_initiate_ota_check = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
             }
             break;
@@ -175,21 +161,26 @@ void APP_OTA_MQTT_Tasks ( void )
         
         case APP_OTA_MQTT_STATE_WAIT_FOR_UPDATE_CHECK_COMPLETE:
         {
-            if (mqtt_ota_trigger_status == MQTT_OTA_UPDATED_VERSION_AVAILABLE) {
-                APP_MQTT_PublishMsg(mqtt_pub_message[DOWNLOADING]);
-                //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, mqtt_pub_message[DOWNLOADING], strlen(mqtt_pub_message[DOWNLOADING]));
-                app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_FOR_OTA_COMPLETE_TASK;
-                /*Go to next state*/
+            if (ota_status == OTA_UPDATED_VERSION_AVAILABLE) {
+                if (SYS_OTA_CtrlMsg(SYS_OTA_INITIATE_OTA, NULL, 0) == SYS_OTA_SUCCESS) {
+                    APP_MQTT_PublishMsg("Downloading");
+                    app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_FOR_OTA_COMPLETE_TASK;
+                } else {
+                    APP_MQTT_PublishMsg("OTA_not_initiated");
+                    mqtt_ota_complete = false;
+                    ota_status = OTA_NOT_TRIGGERED;
+                    g_appMqttData.mqtt_initiate_ota_check = false;
+                    app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                }
                 break;
-            } else if (mqtt_ota_trigger_status == MQTT_OTA_UPDATED_VERSION_NOT_AVAILABLE) {
-                APP_MQTT_PublishMsg(mqtt_pub_message[UPDATE_NOT_AVAILABLE]);
-                //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, mqtt_pub_message[UPDATE_NOT_AVAILABLE], strlen(mqtt_pub_message[UPDATE_NOT_AVAILABLE]));
+            } else if (ota_status == OTA_UPDATED_VERSION_NOT_AVAILABLE) {
+                APP_MQTT_PublishMsg("Update_not_available");
                 app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
                 /*if update available below lines will not be executed*/
                 mqtt_ota_complete = false;
-                mqtt_ota_trigger_status = MQTT_OTA_NOT_TRIGGERED;
-                mqtt_initiate_ota_check = false;
-
+                ota_status = OTA_NOT_TRIGGERED;
+                g_appMqttData.mqtt_initiate_ota_check = false;
+                break;
             }
         }
         
@@ -197,15 +188,50 @@ void APP_OTA_MQTT_Tasks ( void )
         {
             if (mqtt_ota_complete == true) {
                 mqtt_ota_complete = false;
-                mqtt_initiate_ota_check = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
                 
-                if(mqtt_ota_trigger_status == MQTT_OTA_FAILED){
-                    APP_MQTT_PublishMsg("Image_Download_failed");
-                    //SYS_MQTT_Publish(g_sSysMqttHandle, &sMqttTopicCfg, "Image_Download_failed", 22);
-                    app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                switch(ota_status){
+                    case OTA_FAILED:
+                        APP_MQTT_PublishMsg("Image_Download_failed");
+                        app_ota_mqttData.state = APP_OTA_MQTT_STATE_SERVICE_TASKS;
+                        ota_status = OTA_NOT_TRIGGERED;
+                        break;
+                    case OTA_SUCCESS:
+                        app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_TRIGGER_SYSTEM_RESET;
+                        APP_MQTT_PublishMsg("OTA_Success: Restarting");
+                        SYS_CONSOLE_PRINT("\r\nOTA Success: Restarting...\r\n");
+                        g_waitSystemResetTriggerTimeout = SYS_TMR_TickCountGet();
+                        break;
+                    default:
+                        break;      
                 }
-                mqtt_ota_trigger_status = MQTT_OTA_NOT_TRIGGERED;
             }
+            break;
+        }
+        
+        case APP_OTA_MQTT_STATE_WAIT_TRIGGER_SYSTEM_RESET:
+        {
+            // delay x second to allow SYS_PRINT message to be displayed before system is reset
+            if (SYS_TMR_TickCountGet() - g_waitSystemResetTriggerTimeout > WAIT_SYSTEM_RESET_TRIGGER_TIMEOUT_CONST)
+            {
+                app_ota_mqttData.state = APP_OTA_MQTT_STATE_TRIGGER_SYSTEM_RESET;
+            }
+            break;
+        }
+        
+        case APP_OTA_MQTT_STATE_TRIGGER_SYSTEM_RESET:
+        {
+            // Must continue to run the OTA state machine until it's idle
+            if(SYS_OTA_SUCCESS == SYS_OTA_CtrlMsg(SYS_OTA_TRIGGER_SYSTEM_RESET, NULL, 0)){
+                app_ota_mqttData.state = APP_OTA_MQTT_STATE_WAIT_SYSTEM_RESET;
+            }
+            break;
+        }
+        
+        case APP_OTA_MQTT_STATE_WAIT_SYSTEM_RESET:
+        {
+            // do nothing while waiting for OTA service to reset the MCU
+            break;
         }
 
         /* TODO: implement your application state machine.*/

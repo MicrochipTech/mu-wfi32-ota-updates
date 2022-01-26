@@ -1,1 +1,0 @@
-$(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION) -DXPRJ_simple_iot_application=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),--gdwarf-2 -mdfp="${DFP_DIR}"D:\ota_service\MU_demo\B0_migration\without_ota\firmware\src\config\simple_iot_application\peripheral\cache\plib_cache_pic32mz.S

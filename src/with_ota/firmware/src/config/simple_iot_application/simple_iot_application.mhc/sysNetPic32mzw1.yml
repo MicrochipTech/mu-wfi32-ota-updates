@@ -10,6 +10,8 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: sysOtaPic32mzw1, value: 'true'}
+        attributes: {id: sysMqttPic32mzw1, value: 'false'}
+      - type: User
+        attributes: {value: 'true'}
 - type: ElementPosition
   attributes: {x: '460', y: '20', id: sysNetPic32mzw1}

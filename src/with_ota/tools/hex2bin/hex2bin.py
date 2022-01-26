@@ -169,13 +169,13 @@ def find_file(pattern, path):
 
 if __name__ == "__main__":
     init(autoreset=True)
-    print(Fore.GREEN+"hex2bin V1.1")
+    print(Fore.GREEN+"hex2bin V1.2")
     parser = argparse.ArgumentParser(
         description="Tool to convert hex file into an OTA bin file for WFI32", prog="hex2bin")
     parser.add_argument('-i', '--input-hex', dest='production_hex', action='store', metavar='',
                         help='Location of the hex file to convert to OTA bin', type=lambda x: is_valid_file(parser, x))
     parser.add_argument('-z', '--slot-size', dest='IMAGESTORE_SLOT_SIZE', action='store',
-                        metavar='', help='Max slot size of the image in hex', default="0xD0000")
+                        metavar='', help='Max slot size of the image in hex', default="0xE5000")
     parser.add_argument('-s', '--start-addr', dest='APP_IMG_SLOT_START', action='store',
                         metavar='', help='Start address of application image in hex', default="0x10018000")
     parser.add_argument('-o', '--output-bin', dest='production_bin',

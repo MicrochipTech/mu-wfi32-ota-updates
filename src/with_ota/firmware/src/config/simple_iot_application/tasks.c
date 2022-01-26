@@ -83,7 +83,7 @@ SYS_CMD_Tasks();
 
 
     /* Maintain Device Drivers */
-OTA_Tasks();
+    OTA_Tasks();
 SYS_OTA_Tasks();
 
 

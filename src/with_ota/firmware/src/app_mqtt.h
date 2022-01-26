@@ -57,24 +57,23 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 /**Modified : Included various MACRO for MQTT configuration***/ 
 /*****Subscribe topic parameters******/
-#define     MQTT_SUB_TOPIC_COUNT            1
 #define     MQTT_SUB_QOS                    1
-#define     MQTT_LED_CONTROL_SUB_TOPIC      "pranjal139/feeds/led-control"
-#define     MQTT_OTA_TRIGGER_SUB_TOPIC      "pranjal139/feeds/otatrigger"
+#define     MQTT_LED_CONTROL_SUB_TOPIC      ""
+#define     MQTT_OTA_TRIGGER_SUB_TOPIC      ""
 
 /*****Publish topic parameters******/
 #define     MQTT_MAX_PUB_TOPIC                   2 
 #define     MQTT_DEF_PUB_RETAIN             false
 #define     MQTT_DEF_PUB_QOS                1
-#define     MQTT_SWITCH_STATE_PUB_TOPIC     "pranjal139/feeds/switch-state"
-#define     MQTT_APP_VERSION_PUB_TOPIC      "pranjal139/feeds/firmware-version"
+#define     MQTT_SWITCH_STATE_PUB_TOPIC     ""
+#define     MQTT_APP_VERSION_PUB_TOPIC      ""
  
 /*****MQTT Broker parameters******/
 #define     MQTT_BROKER_SERVER_PORT         1883
 #define     MQTT_BROKER_CLEAN_SESSION       true
 #define     MQTT_BROKER_NAME                "io.adafruit.com"
-#define     MQTT_BROKER_USER_NAME           "pranjal139"
-#define     MQTT_BROKER_PASSWORD            "aio_lAhy38MPSAiZYnDDDtJwjH1sgAno"
+#define     MQTT_BROKER_USER_NAME           ""
+#define     MQTT_BROKER_PASSWORD            ""
 #define     MQTT_BROKER_CLIENTID            ""
 
 
@@ -85,6 +84,58 @@ void APP_MQTT_Tasks(void);
 int32_t APP_MQTT_GetStatus(void *p);
 int32_t APP_MQTT_PublishMsg(char *message);
 int32_t APP_MQTT_Subscribe(const char *topic, uint8_t qos);
+void    APP_MQTT_Connect(void);
+
+// *****************************************************************************
+/* Application states
+
+  Summary:
+    Application states enumeration
+
+  Description:
+    This enumeration defines the valid application states.  These states
+    determine the behavior of the application at various times.
+*/
+
+typedef enum
+{
+    /* Application's state machine's initial state. */
+    APP_MQTT_STATE_CONNECTING=0,
+    APP_MQTT_STATE_SUBSCRIBE_LED_CONTROL,
+    APP_MQTT_STATE_SUBSCRIBE_OTA_TRIGGER,
+    APP_MQTT_STATE_PUB_SUB,
+    APP_MQTT_STATE_SERVICE_TASKS
+    /* TODO: Define states used by the application state machine. */
+
+} APP_MQTT_STATES;
+
+// *****************************************************************************
+/* Application Data
+
+  Summary:
+    Holds application data
+
+  Description:
+    This structure holds the application's data.
+
+  Remarks:
+    Application strings and buffers are be defined outside this structure.
+ */
+
+typedef struct
+{
+    /* The application's current state */
+    APP_MQTT_STATES state;
+    
+    /* TODO: Define any additional data used by the application. */
+    bool mqtt_initiate_ota_check;
+    bool led_control_topic_is_subscribed;
+    bool ota_control_topic_is_subscribed;
+    bool mqtt_is_connected;
+    bool led_control;
+
+} APP_MQTT_DATA;
+
 /*******************************************************************************
  End of File
  */

@@ -54,6 +54,15 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdlib.h>
 #include "configuration.h"
 
+typedef enum
+{
+    OTA_NOT_TRIGGERED=0,
+    OTA_UPDATED_VERSION_AVAILABLE,
+    OTA_UPDATED_VERSION_NOT_AVAILABLE,
+    OTA_FAILED,
+    OTA_SUCCESS
+} OTA_STATUS;
+
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 

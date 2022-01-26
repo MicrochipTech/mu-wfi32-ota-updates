@@ -1,22 +1,6 @@
-/*******************************************************************************
- Module for Microchip OTA Library
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-   ota_config.h
-
-  Summary:
-    The header file defines Bootloader/OTA firmware image layout.
-
-  Description:
-    This file defines the system and application interface.
-*******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2014-2015 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -39,6 +23,24 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 *******************************************************************************/
 // DOM-IGNORE-END
 
+/*******************************************************************************
+ Module for Microchip OTA Library
+
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+   ota_config.h
+
+  Summary:
+    The header file defines Bootloader/OTA firmware image layout.
+
+  Description:
+    This file defines the system and application interface.
+*******************************************************************************/
+
+
+
 
 #ifndef __INC_OTA_CONFIG_H__
 #define __INC_OTA_CONFIG_H__
@@ -50,11 +52,10 @@ extern "C" {
 
 #define OTA_VERSION               "1.0.0"
 
-#define INT_FLASH_SIZE            0x100000
-#define INT_FLASH_LOGICAL_ADDR    0xb0000000
+
 #define FLASH_SECTOR_SIZE         4096
 #define APP_IMG_SLOT_ADDR         0x00018000  
-#define FACTORY_RESET_IMG_SIZE    0xd0000
+#define FACTORY_RESET_IMG_SIZE    0xE5000
 #define OTA_BOOT_CTL_SIZE         FLASH_SECTOR_SIZE
 
 //------------------------------------------------------------------------------    

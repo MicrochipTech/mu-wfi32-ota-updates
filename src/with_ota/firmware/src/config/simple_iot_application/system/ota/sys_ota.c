@@ -58,7 +58,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 /*Macro to define maximum downloader read operation to perform, if client is continuously unable to receive 
  * data from server */
-#define MAX_DOWNLOADER_READ_COUNT   500000
+#define MAX_DOWNLOADER_READ_COUNT   70000
 
 #define SYS_OTA_GET_STATUS_STR(status)  \
     (status == SYS_OTA_IDLE)?"IDLE" : \

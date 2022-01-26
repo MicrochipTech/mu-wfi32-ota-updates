@@ -441,9 +441,7 @@ void SYS_MQTT_Paho_Task(SYS_MODULE_OBJ obj)
                 }
 
                 SYS_MQTT_StartTimer(hdl, SYS_MQTT_TIMEOUT_CONST);
-                
-                hdl->sCfgInfo.sSubscribeConfig[0].entryValid = 1;
-                
+
                 hdl->uVendorInfo.sPahoInfo.sPubSubCfgInProgress.qos = hdl->sCfgInfo.sSubscribeConfig[0].qos;
 
                 hdl->uVendorInfo.sPahoInfo.sPubSubCfgInProgress.topicName = hdl->sCfgInfo.sSubscribeConfig[0].topicName;
@@ -704,7 +702,7 @@ int32_t SYS_MQTT_Paho_CtrlMsg(SYS_MODULE_OBJ obj, SYS_MQTT_CtrlMsgType eCtrlMsgT
                 break;
             }
         }
-        
+
         /* Return Failure in case already reached the MAX Topics Supported */
         if (i == SYS_MQTT_SUB_MAX_TOPICS)
         {

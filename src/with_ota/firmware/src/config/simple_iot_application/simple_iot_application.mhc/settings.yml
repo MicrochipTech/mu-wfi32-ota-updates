@@ -5,10 +5,10 @@ frameworkPath: ..\..\..
 processor: PIC32MZ1025W104132
 projectName: simple_iot_application
 settings:
-  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
-  DFPPath: .\dev_packs\Microchip\PIC32MZ-W_DFP\1.5.203\atdf\PIC32MZ1025W104132.atdf
+  CMSISPath: ./dev_packs/arm/CMSIS/5.8.0
+  DFPPath: ./dev_packs/Microchip/PIC32MZ-W_DFP/1.5.203/atdf/PIC32MZ1025W104132.atdf
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
-  MERGE_STRATEGY: USER_RECENT
-  PackageFilter: bsp;classb_pic32mzw1_wfi32e01;classb_pic32mzw1_wfi32e01_bp;core;core_3_5_1;core_apps_pic32mz_w1;core_B0;crypto;cryptoauthlib;csp;csp_3_5_1;csp_apps_pic32mz_w1;csp_B0;dev_packs;net;quick_docs;usb;wireless_apps_pic32mzw1_wfi32e01;wireless_apps_pic32mzw1_wfi32e01_ota;wireless_system_pic32mzw1_wfi32e01;wireless_system_pic32mzw1_wfi32e01_ota;wireless_system_pic32mzw1_wfi32e01_ver_32;wireless_wifi;wireless_wifi_rio2_integration;wireless_wifi_tpc
+  MERGE_STRATEGY: ALL
+  PackageFilter: crypto;wireless_apps_pic32mzw1_wfi32e01-3.5.1;dev_packs;net;core;bsp;quick_docs;wireless_wifi;csp;wireless_system_pic32mzw1_wfi32e01
   TRUSTZONE: 'false'

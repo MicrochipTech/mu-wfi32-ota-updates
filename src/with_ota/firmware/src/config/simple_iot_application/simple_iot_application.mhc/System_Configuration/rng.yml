@@ -33,4 +33,4 @@ children:
       - type: Dynamic
         attributes: {id: rng, value: '1792'}
 - type: ElementPosition
-  attributes: {x: '250', y: '460', id: rng}
+  attributes: {x: '900', y: '20', id: rng}

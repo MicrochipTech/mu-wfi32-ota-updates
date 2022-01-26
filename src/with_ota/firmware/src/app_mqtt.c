@@ -65,15 +65,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 
-volatile APP_DATA g_appData;
+volatile APP_MQTT_DATA g_appMqttData;
 
 SYS_MODULE_OBJ g_sSysMqttHandle = SYS_MODULE_OBJ_INVALID;
 SYS_MQTT_Config g_sTmpSysMqttCfg;
 
-/**Modified : Included variable to control LED, this is extern for app_led_control.c***/ 
-bool led_control;
-bool mqtt_initiate_ota_check = false;
-bool subscribe_next_topic;
+
 /**Modified : Included MACRO to support configuration using MQTT APIs.***/ 
 #define APP_CFG_WITH_MQTT_API
 
@@ -130,20 +127,23 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             SYS_CONSOLE_PRINT("\nMqttCallback(): Msg received on Topic: %s ; Msg: %s\r\n",
                     psMsg->topicName, psMsg->message);
             
-            //ota
-            if (!strncmp((char*) psMsg->message, "start", (psMsg->messageLength - 1)))
-                mqtt_initiate_ota_check = true;
-            
             /***Modified : Included LED control message***/
             if (!strcmp((char*) psMsg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
                 if (!strcmp((char*) psMsg->message, "ON"))
-                    led_control = true;
+                    g_appMqttData.led_control = true;
                 else if (!strcmp((char*) psMsg->message, "OFF"))
-                    led_control = false;
+                    g_appMqttData.led_control = false;
                 else {
                     /*Do nothing*/
                 }
             }
+            
+            /***Modified : Included OTA control message***/
+            if (!strcmp((char*) psMsg->topicName, MQTT_OTA_TRIGGER_SUB_TOPIC)) {
+                if (!strncmp((char*) psMsg->message, "1", (psMsg->messageLength - 1)))
+                    g_appMqttData.mqtt_initiate_ota_check = true;
+            }
+            
         }
         break;
 
@@ -151,6 +151,8 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
         {
             /***Modified : Added console print ***/
             SYS_CONSOLE_PRINT("\nMqttCallback(): MQTT Disconnected\r\n");
+            SYS_MQTT_Disconnect(g_sSysMqttHandle);
+            g_appMqttData.mqtt_is_connected = false;
         }
         break;
 
@@ -158,6 +160,7 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
         {
             /***Modified : Added console print ***/
             SYS_CONSOLE_PRINT("\nMqttCallback(): MQTT Connected\r\n");
+            g_appMqttData.mqtt_is_connected = true;
         }
         break;
 
@@ -167,10 +170,14 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
             SYS_MQTT_SubscribeConfig *psMqttSubCfg = (SYS_MQTT_SubscribeConfig *) data;
             SYS_CONSOLE_PRINT("\nMqttCallback(): Subscribed to Topic '%s'\r\n", psMqttSubCfg->topicName);
             
-            if (!strcmp(psMqttSubCfg->topicName, MQTT_OTA_TRIGGER_SUB_TOPIC)) {
-                SYS_CONSOLE_PRINT("Topic %s is subscribed, Subscribing next topic\n\r", psMqttSubCfg->topicName);              
-                subscribe_next_topic = true;
+            if (!strcmp((char*) psMqttSubCfg->topicName, MQTT_LED_CONTROL_SUB_TOPIC)) {
+                g_appMqttData.led_control_topic_is_subscribed = true;
             }
+            
+            if (!strcmp((char*) psMqttSubCfg->topicName, MQTT_OTA_TRIGGER_SUB_TOPIC)) {
+                g_appMqttData.ota_control_topic_is_subscribed = true;
+            }
+          
         }
         break;
 
@@ -233,34 +240,16 @@ int32_t MqttCallback(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, v
  */
 void APP_MQTT_Initialize(void) {
 
-	/*
-	** For more details check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
-	*/
-#ifdef APP_CFG_WITH_MQTT_API
+    APP_MQTT_Connect();
 
-	/* In case the user does not want to use the configuration given in the MHC */
-    
-    /***Modified : Initializing required parameters using APIs***/
-    SYS_MQTT_Config *psMqttCfg;
-    memset(&g_sTmpSysMqttCfg, 0, sizeof (g_sTmpSysMqttCfg));
-    psMqttCfg = &g_sTmpSysMqttCfg;
-    psMqttCfg->sBrokerConfig.autoConnect = false;
-    psMqttCfg->sBrokerConfig.tlsEnabled = false;
-    strcpy(psMqttCfg->sBrokerConfig.brokerName, MQTT_BROKER_NAME);
-    strcpy(psMqttCfg->sBrokerConfig.username, MQTT_BROKER_USER_NAME);
-    strcpy(psMqttCfg->sBrokerConfig.password, MQTT_BROKER_PASSWORD);
-    strcpy(psMqttCfg->sBrokerConfig.clientId, MQTT_BROKER_CLIENTID);
-    psMqttCfg->sBrokerConfig.serverPort = MQTT_BROKER_SERVER_PORT;
-    psMqttCfg->sBrokerConfig.cleanSession = MQTT_BROKER_CLEAN_SESSION;
-    psMqttCfg->subscribeCount = MQTT_SUB_TOPIC_COUNT;
-    psMqttCfg->sSubscribeConfig[0].qos = MQTT_SUB_QOS;
-    strcpy(psMqttCfg->sSubscribeConfig[0].topicName, MQTT_OTA_TRIGGER_SUB_TOPIC);
-    g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
-#else    
-    g_sSysMqttHandle = SYS_MQTT_Connect(NULL, /* NULL value means that the MHC configuration should be used for this connection */
-										MqttCallback, 
-										NULL);
-#endif    
+    /* Place the MQTT App state machine in its initial state. */
+    g_appMqttData.state = APP_MQTT_STATE_CONNECTING;
+    g_appMqttData.mqtt_is_connected = false;
+    g_appMqttData.led_control_topic_is_subscribed = false;
+    g_appMqttData.ota_control_topic_is_subscribed = false;
+    g_appMqttData.mqtt_initiate_ota_check = false;
+    g_appMqttData.led_control = false;
+
 }
 
 /******************************************************************************
@@ -273,6 +262,39 @@ void APP_MQTT_Initialize(void) {
 void APP_MQTT_Tasks(void) {
 
     SYS_MQTT_Task(g_sSysMqttHandle);
+    
+    switch (g_appMqttData.state){
+        case APP_MQTT_STATE_CONNECTING:
+            if (g_appMqttData.mqtt_is_connected){
+                APP_MQTT_Subscribe(MQTT_LED_CONTROL_SUB_TOPIC,1);
+                g_appMqttData.state = APP_MQTT_STATE_SUBSCRIBE_LED_CONTROL;
+            }
+            break;
+        case APP_MQTT_STATE_SUBSCRIBE_LED_CONTROL:
+            if (g_appMqttData.led_control_topic_is_subscribed){
+                APP_MQTT_Subscribe(MQTT_OTA_TRIGGER_SUB_TOPIC,1);
+                g_appMqttData.state = APP_MQTT_STATE_SUBSCRIBE_OTA_TRIGGER;
+            }
+            break;
+        case APP_MQTT_STATE_SUBSCRIBE_OTA_TRIGGER:
+            if (g_appMqttData.ota_control_topic_is_subscribed){
+                g_appMqttData.state = APP_MQTT_STATE_PUB_SUB;
+            }
+            break;
+        case APP_MQTT_STATE_PUB_SUB:
+            if (g_appMqttData.mqtt_is_connected == false){
+                APP_MQTT_Connect();
+                g_appMqttData.state = APP_MQTT_STATE_CONNECTING;
+                g_appMqttData.mqtt_is_connected = false;
+                g_appMqttData.led_control_topic_is_subscribed = false;
+                g_appMqttData.ota_control_topic_is_subscribed = false;
+                g_appMqttData.mqtt_initiate_ota_check = false;
+                g_appMqttData.led_control = false;
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 /******************************************************************************
@@ -293,6 +315,37 @@ int32_t APP_MQTT_Subscribe(const char *topic, uint8_t qos) {
     sSubCfg.qos = 1;
     strcpy(sSubCfg.topicName, topic);
     return SYS_MQTT_Subscribe(g_sSysMqttHandle, &sSubCfg);
+}
+
+void APP_MQTT_Connect(void){
+    
+    /*
+	** For more details check https://microchip-mplab-harmony.github.io/wireless/system/mqtt/docs/interface.html
+	*/
+#ifdef APP_CFG_WITH_MQTT_API
+
+	/* In case the user does not want to use the configuration given in the MHC */
+    
+    /***Modified : Initializing required parameters using APIs***/
+    SYS_MQTT_Config *psMqttCfg;
+    memset(&g_sTmpSysMqttCfg, 0, sizeof (g_sTmpSysMqttCfg));
+    psMqttCfg = &g_sTmpSysMqttCfg;
+    psMqttCfg->sBrokerConfig.autoConnect = false;
+    psMqttCfg->sBrokerConfig.tlsEnabled = false;
+    strcpy(psMqttCfg->sBrokerConfig.brokerName, MQTT_BROKER_NAME);
+    strcpy(psMqttCfg->sBrokerConfig.username, MQTT_BROKER_USER_NAME);
+    strcpy(psMqttCfg->sBrokerConfig.password, MQTT_BROKER_PASSWORD);
+    strcpy(psMqttCfg->sBrokerConfig.clientId, MQTT_BROKER_CLIENTID);
+    psMqttCfg->sBrokerConfig.serverPort = MQTT_BROKER_SERVER_PORT;
+    psMqttCfg->sBrokerConfig.cleanSession = MQTT_BROKER_CLEAN_SESSION;
+    psMqttCfg->subscribeCount = 0;
+    g_sSysMqttHandle = SYS_MQTT_Connect(&g_sTmpSysMqttCfg, MqttCallback, NULL);
+#else    
+    g_sSysMqttHandle = SYS_MQTT_Connect(NULL, /* NULL value means that the MHC configuration should be used for this connection */
+										MqttCallback, 
+										NULL);
+#endif
+    
 }
 /*******************************************************************************
  End of File

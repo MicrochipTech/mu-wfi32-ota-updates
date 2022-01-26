@@ -56,7 +56,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-uint8_t mqtt_ota_trigger_status;
+OTA_STATUS ota_status;
 bool mqtt_ota_complete;
 // *****************************************************************************
 // *****************************************************************************
@@ -83,14 +83,14 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
         case SYS_OTA_UPDATE_AVAILABLE:
         {
             /*OTA update available . Developer can build their own custom logic */
-            mqtt_ota_trigger_status = 1;
+            ota_status = OTA_UPDATED_VERSION_AVAILABLE;
             SYS_CONSOLE_PRINT("SYS_OTA_UPDATE_AVAILABLE\r\n");
             break;
         }
         case SYS_OTA_UPDATE_NOTAVAILABLE:
         {
             /*OTA update not available. Developer can build their own custom logic*/
-            mqtt_ota_trigger_status = 2;
+            ota_status = OTA_UPDATED_VERSION_NOT_AVAILABLE;
             SYS_CONSOLE_PRINT("SYS_OTA_UPDATE_NOTAVAILABLE\r\n");
             break;
         }
@@ -140,7 +140,7 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
         {
             /*OTA image download failed . Developer can build their own custom logic*/
             mqtt_ota_complete = true;
-            mqtt_ota_trigger_status = 3;
+            ota_status = OTA_FAILED;
             SYS_CONSOLE_PRINT("SYS_OTA_DOWNLOAD_FAILED\r\n");
             break;
         }
@@ -162,7 +162,7 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
             /*OTA image digest verify failed . Developer can build their own custom logic*/
             SYS_CONSOLE_PRINT("SYS_OTA_IMAGE_VERIFICATION_FAILED\r\n");
             mqtt_ota_complete = true;
-            mqtt_ota_trigger_status = 3;
+            ota_status = OTA_FAILED;
             break;
         }
         case SYS_OTA_DB_ENTRY_SUCCESS:
@@ -172,6 +172,7 @@ void sys_ota_cb(uint32_t event, void * data, void *cookie) {
             /*Do not use API call from here. Use variables to get the status*/
             SYS_CONSOLE_PRINT("SYS_OTA_DB_ENTRY_SUCCESS\r\n");
             mqtt_ota_complete = true;
+            ota_status = OTA_SUCCESS;
             break;
         }
         case SYS_OTA_IMAGE_ERASE_FAILED:

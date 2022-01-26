@@ -54,14 +54,15 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "definitions.h"
 #include "app_mqtt.h"
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
 
-extern bool led_control;
-extern bool subscribe_next_topic;
+extern APP_MQTT_DATA g_appMqttData;
+
 
 // *****************************************************************************
 /* Application Data
@@ -157,17 +158,8 @@ void APP_LED_CONTROL_Tasks ( void )
 
         case APP_LED_CONTROL_STATE_SERVICE_TASKS:
         {
-            /*second topic will be subscribed after first topic */
-            if (subscribe_next_topic == true) {
-                subscribe_next_topic = false;
-                APP_MQTT_Subscribe(MQTT_LED_CONTROL_SUB_TOPIC,1);
-                /*SYS_MQTT_SubscribeConfig sMqttCfg_new;
-                sMqttCfg_new.qos = 1;
-                strcpy(sMqttCfg_new.topicName, MQTT_LED_CONTROL_SUB_TOPIC);
-                SYS_MQTT_Subscribe(g_sSysMqttHandle, &sMqttCfg_new);*/
-            }
             /*************************Control led*******************************/
-            if (led_control == true) {
+            if (g_appMqttData.led_control == true) {
                 //SYS_CONSOLE_PRINT("Switchig On LED\n\r");
                 LED_RED_On();
             } else {

@@ -67,6 +67,7 @@ void GPIO_Initialize ( void )
     /* PORTC Initialization */
 
     /* PORTK Initialization */
+    ANSELKCLR = 0x8; /* Digital Mode Enable */
 
 
 

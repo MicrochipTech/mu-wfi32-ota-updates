@@ -1,20 +1,6 @@
-/*******************************************************************************
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    database_parser.c
-    
-  Summary:
-    Interface for the Bootloader library.
-
-  Description:
-    This file contains the interface definition for the OTA library.
-*******************************************************************************/
-
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-Copyright (c) 2013-2014 released Microchip Technology Inc.  All rights reserved.
+Copyright (c) 2020-2021 released Microchip Technology Inc.  All rights reserved.
 
 Microchip licenses to you the right to use, modify, copy and distribute
 Software only when embedded on a Microchip microcontroller or digital signal
@@ -36,6 +22,21 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
  *******************************************************************************/
 // DOM-IGNORE-END
+/*******************************************************************************
+  Company:
+    Microchip Technology Inc.
+
+  File Name:
+    database_parser.c
+    
+  Summary:
+    Interface for the Bootloader library.
+
+  Description:
+    This file contains the interface definition for the OTA library.
+*******************************************************************************/
+
+
 
 // *****************************************************************************
 // *****************************************************************************
