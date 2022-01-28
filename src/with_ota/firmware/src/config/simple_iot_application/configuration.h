@@ -112,7 +112,7 @@ extern "C" {
 #define SYS_FS_VOLUME_NUMBER              1
 
 #define SYS_FS_AUTOMOUNT_ENABLE           false
-#define SYS_FS_MAX_FILES                  1
+#define SYS_FS_MAX_FILES                  5
 #define SYS_FS_MAX_FILE_SYSTEM_TYPE       1
 #define SYS_FS_MEDIA_MAX_BLOCK_SIZE       512
 #define SYS_FS_MEDIA_MANAGER_BUFFER_SIZE  2048
@@ -133,6 +133,7 @@ extern "C" {
 
 
 #define SYS_NET_SUPP_INTF_WIFI_ONLY
+#define SYS_NET_SUPP_NUM_OF_SOCKS        		2
 
 #define SYS_NET_INDEX0_INTF       				SYS_NET_INTF_WIFI
 #define SYS_NET_INDEX0_MODE       				SYS_NET_MODE_CLIENT
@@ -226,7 +227,8 @@ extern "C" {
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_SUPPORT
 #define WDRV_PIC32MZW_BA414E_SUPPORT
-
+#define WDRV_PIC32MZW_ALARM_PERIOD_1MS          0
+#define WDRV_PIC32MZW_ALARM_PERIOD_MAX          0
 
 
 // *****************************************************************************
@@ -550,8 +552,8 @@ extern "C" {
 
 #define SYS_WIFI_MAX_CBS					2
 #define SYS_WIFI_COUNTRYCODE        	   "GEN"
-#define SYS_WIFI_STA_SSID        			""
-#define SYS_WIFI_STA_PWD        			""
+#define SYS_WIFI_STA_SSID        			"DEMO_AP"
+#define SYS_WIFI_STA_PWD        			"password"
 #define SYS_WIFI_STA_AUTHTYPE				SYS_WIFI_WPAWPA2MIXED 
 #define SYS_WIFI_STA_AUTOCONNECT   			true
 

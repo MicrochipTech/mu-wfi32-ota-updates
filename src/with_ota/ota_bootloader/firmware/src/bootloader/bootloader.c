@@ -115,8 +115,8 @@ static BOOTLOADER_DATA __attribute__((coherent, aligned(128))) bootloader;
 #define APP_DEVICE_NAME         "/dev/mtda1"
 #define APP_FS_TYPE             FAT
 #define APP_OTA_DATABASE_NAME   "image_database.csv"
-#define APP_OTA_DATABASE_PATH   "/mnt/myDrive1/image_database.csv"
-#define APP_FILE_NAME           "factory_reset.txt"
+#define APP_OTA_DATABASE_PATH   "/mnt/myDrive1/ota/image_database.csv"
+#define APP_FILE_NAME           "ota/factory_reset.bin"
 #define BUFFER_SIZE                (4096U)
 uint8_t CACHE_ALIGN work[SYS_FS_FAT_MAX_SS];
 
@@ -129,6 +129,12 @@ typedef enum {
 
     /* The app formats the disk. */
     APP_FORMAT_DISK,
+            
+    /* Create directory. */        
+    APP_CREATE_DIR,
+    
+    /* Open directory. */         
+    APP_OPEN_DIR,        
 
     /* The app opens the file */
     APP_OPEN_FILE,
@@ -280,7 +286,32 @@ void open_file(void) {
                 appFile.state = APP_ERROR;
             } else {
                 /* Format succeeded. Open a file. */
+                appFile.state = APP_CREATE_DIR;
+            }
+            break;
+        }
+        case APP_CREATE_DIR:
+        {
+            SYS_FS_RESULT res;
+            res = SYS_FS_DirectoryMake("ota");
+            if(res == SYS_FS_RES_FAILURE){
+                // Directory make failed
+            }
+            else{
                 appFile.state = APP_OPEN_FILE;
+            }
+            break;
+        }
+        case APP_OPEN_DIR:
+        {
+            SYS_FS_HANDLE dirHandle;
+            dirHandle = SYS_FS_DirOpen("/mnt/myDrive1/ota");
+            if(dirHandle != SYS_FS_HANDLE_INVALID){
+                // Directory open is successful
+                appFile.state = APP_OPEN_FILE;
+            }
+            else{
+                appFile.state = APP_ERROR;
             }
             break;
         }
@@ -489,7 +520,7 @@ static BOOTLOADER_STATUS Bootloader_Task_CheckImage(void) {
 #endif
                     return SYS_STATUS_ERROR;
                 }
-                if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, selected_row, &img->version) != 0) {
+                if (GetFieldValue_32Bit(imageDB, OTA_IMAGE_VERSION, selected_row, &img->version) != 0) {
 #ifdef OTA_DEBUG
                     SYS_CONSOLE_DEBUG1("Image version field not read properly\n");
 #endif
@@ -582,7 +613,7 @@ typedef struct {
     uint8_t *buf;
     uint32_t slot;
     uint32_t selected;
-    uint8_t version;
+    uint32_t version;
 } BOOTLOADER_SELECT_IMAGE_TASK_CONTEXT;
 
 typedef enum {
@@ -634,13 +665,13 @@ static BOOTLOADER_STATUS Bootloader_Task_SelectImage(void) {
                 selected_row = -1;
                 /*set version variables to zero initially, and go through the image database to 
                  get the latest version of image */
-                uint8_t ver = 0;
+                uint32_t ver = 0;
                 param->img.version = 0;
 
                 uint8_t i;
                 /*gothrough the image DB to get the latest and best image version */
                 for (i = 0; i < total_images; i++) {
-                    if (GetFieldValue(imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
+                    if (GetFieldValue_32Bit(imageDB, OTA_IMAGE_VERSION, i, &ver) != 0) {
 #ifdef OTA_DEBUG
                         SYS_CONSOLE_DEBUG1("Image version field not read properly\n");
 #endif
@@ -684,7 +715,7 @@ static BOOTLOADER_STATUS Bootloader_Task_SelectImage(void) {
                     /*Get the name of the selected image*/
                     char image_name[100];
                     char image_path[100];
-                    strcpy(image_path, APP_MOUNT_NAME"/");
+                    strcpy(image_path, APP_MOUNT_NAME"/ota/");
                     if (GetFieldString(imageDB, OTA_IMAGE_NAME, selected_row, image_name) != 0) {
 #ifdef OTA_DEBUG
                         printf("Image name field not read properly\n");

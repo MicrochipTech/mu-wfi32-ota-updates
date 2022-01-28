@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/main.c</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/config/simple_iot_application/tasks.c</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/app.c</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/app_mqtt.c</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/config/simple_iot_application/system/ota/framework/ota_app/app_ota.c</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/app_ota_mqtt.c</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/config/simple_iot_application/configuration.h</file>
-            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-25/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/app_mqtt.h</file>
+            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-26/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/config/simple_iot_application/configuration.h</file>
+            <file>file:/Users/c12790/projects/mu-wfi32-ota-updates/mu-wfi32-ota-updates-main-v2022-01-26/mu-wfi32-ota-updates-main/src/without_ota/firmware/src/app_mqtt.h</file>
         </group>
     </open-files>
 </project-private>

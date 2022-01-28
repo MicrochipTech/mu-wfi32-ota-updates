@@ -52,6 +52,7 @@
                   <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_softap.h</itemPath>
                   <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_sta.h</itemPath>
                   <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ps.h</itemPath>
+                  <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_custie.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
             </logicalFolder>
@@ -294,8 +295,11 @@
                 <logicalFolder name="f2" displayName="csv" projectFiles="true">
                   <itemPath>../src/config/simple_iot_application/system/ota/framework/csv/csv.h</itemPath>
                 </logicalFolder>
-                <logicalFolder name="f3" displayName="http_client" projectFiles="true">
+                <logicalFolder name="f4" displayName="http_client" projectFiles="true">
                   <itemPath>../src/config/simple_iot_application/system/ota/framework/http_client/http_client.h</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f3" displayName="patch" projectFiles="true">
+                  <itemPath>../src/config/simple_iot_application/system/ota/framework/patch/janpatch.h</itemPath>
                 </logicalFolder>
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/ota.h</itemPath>
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/downloader.h</itemPath>
@@ -304,6 +308,7 @@
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/sha256.h</itemPath>
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/ota_config.h</itemPath>
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/ota_database_parser.h</itemPath>
+                <itemPath>../src/config/simple_iot_application/system/ota/framework/ota_patch.h</itemPath>
               </logicalFolder>
               <itemPath>../src/config/simple_iot_application/system/ota/sys_ota.h</itemPath>
             </logicalFolder>
@@ -573,6 +578,7 @@
                 <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_softap.c</itemPath>
                 <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_sta.c</itemPath>
                 <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_ps.c</itemPath>
+                <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_custie.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -713,6 +719,7 @@
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/int_flash.c</itemPath>
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/sha256.c</itemPath>
                 <itemPath>../src/config/simple_iot_application/system/ota/framework/ota_database_parser.c</itemPath>
+                <itemPath>../src/config/simple_iot_application/system/ota/framework/ota_patch.c</itemPath>
               </logicalFolder>
               <itemPath>../src/config/simple_iot_application/system/ota/sys_ota.c</itemPath>
             </logicalFolder>
@@ -1047,7 +1054,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
-        <property key="make-warnings-into-errors" value="true"/>
+        <property key="make-warnings-into-errors" value="false"/>
         <property key="optimization-level" value="-O1"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>

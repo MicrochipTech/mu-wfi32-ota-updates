@@ -497,11 +497,6 @@ const TCPIP_ICMP_MODULE_CONFIG tcpipICMPInitData =
 
 
 
-
-
-
-
-
 /*** DNS Client Initialization Data ***/
 const TCPIP_DNS_CLIENT_MODULE_CONFIG tcpipDNSClientInitData =
 {
@@ -837,11 +832,11 @@ void SYS_Initialize ( void* data )
     sysObj.ba414e = DRV_BA414E_Initialize(0, (SYS_MODULE_INIT*)&ba414eInitData);
 
 
-	/* Network Presentation Layer Initialization */
-	sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
-    /* TCPIP Stack Initialization */
-    sysObj.tcpip = TCPIP_STACK_Init();
-    SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
+/* Network Presentation Layer Initialization */
+sysObj.netPres = NET_PRES_Initialize(0, (SYS_MODULE_INIT*)&netPresInitData);
+/* TCPIP Stack Initialization */
+sysObj.tcpip = TCPIP_STACK_Init();
+SYS_ASSERT(sysObj.tcpip != SYS_MODULE_OBJ_INVALID, "TCPIP_STACK_Init Failed" );
 
 
     CRYPT_WCCB_Initialize();

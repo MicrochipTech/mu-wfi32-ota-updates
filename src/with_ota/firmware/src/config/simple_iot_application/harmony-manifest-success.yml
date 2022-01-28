@@ -4,7 +4,7 @@
 
 
 project: without_ota
-creation_date: 2022-01-25T15:35:25.818-05:00[America/Toronto]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2022-01-28T14:23:46.905-05:00[America/Toronto]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Mac OS X
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.2
@@ -15,12 +15,13 @@ compiler: XC32 (3.01)
 modules:
     - {name: "core", version: "v3.10.0"}
     - {name: "csp", version: "v3.10.0"}
-    - {name: "wireless_wifi", version: "v3.5.1"}
+    - {name: "wireless_wifi", version: "v3.6.1"}
     - {name: "paho.mqtt.embedded-c", version: "v1.2.3"}
     - {name: "dev_packs", version: "v3.10.0"}
-    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.5.1"}
+    - {name: "littlefs", version: "unknown"}
+    - {name: "wireless_system_pic32mzw1_wfi32e01", version: "v3.6.0"}
     - {name: "wolfssl", version: "v4.7.0"}
-    - {name: "net", version: "v3.7.2"}
-    - {name: "bsp", version: "v3.9.0"}
-    - {name: "crypto", version: "v3.7.3"}
+    - {name: "net", version: "v3.7.4"}
+    - {name: "bsp", version: "v3.10.0"}
+    - {name: "crypto", version: "v3.7.5"}
 

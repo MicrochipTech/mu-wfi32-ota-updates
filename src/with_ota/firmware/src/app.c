@@ -67,12 +67,18 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 #ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
-static uint32_t     g_lastPubTimeout = 0;
+static uint32_t g_lastPubTimeout = 0;
 #define MQTT_PERIOIDC_PUB_TIMEOUT   5 //Sec ; if the value is 0, Periodic Publish will disable
 #define MQTT_PUB_TIMEOUT_CONST (MQTT_PERIOIDC_PUB_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
 #endif
 
+// define Application Version, based on whether OTA Service is part of project
+#if defined(SYS_OTA_APP_VER_NUM)
 extern SYS_OTA_Config g_SysOtaConfig;
+#else
+int appVersion = 1;
+#endif
+
 
 // *****************************************************************************
 /* Application Data
@@ -133,8 +139,12 @@ void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
 		char message[32] = {0};
 		static uint32_t     PubMsgCnt = 0;
 		
-        /**Modified : Application version is added to periodic message***/
-		sprintf(message, "{\"value\": %d}", g_SysOtaConfig.app_version);
+        // Send Application Version as periodic message
+        #if defined(SYS_OTA_APP_VER_NUM)
+        sprintf(message, "{\"value\": %d}", g_SysOtaConfig.app_version);
+        #else
+        sprintf(message, "{\"value\": %d}", appVersion);
+        #endif  
 		if (APP_MQTT_PublishMsg(message) == SYS_MQTT_SUCCESS)
 		{
             SYS_CONSOLE_PRINT("\nPublished Msg(%d) to Topic\r\n", PubMsgCnt); 
