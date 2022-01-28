@@ -42,6 +42,7 @@
                   <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_softap.h</itemPath>
                   <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_sta.h</itemPath>
                   <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_ps.h</itemPath>
+                  <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/include/wdrv_pic32mzw_custie.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
             </logicalFolder>
@@ -479,6 +480,7 @@
                 <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_softap.c</itemPath>
                 <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_sta.c</itemPath>
                 <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_ps.c</itemPath>
+                <itemPath>../src/config/simple_iot_application/driver/wifi/pic32mzw1/wdrv_pic32mzw_custie.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -728,35 +730,35 @@
                      projectFiles="true">
         <logicalFolder name="f1" displayName="System_Configuration" projectFiles="true">
           <logicalFolder name="f1" displayName="TCP_IP_STACK" projectFiles="true">
-            <logicalFolder name="f1" displayName="APPLICATION_LAYER" projectFiles="true">
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
+            <logicalFolder name="f2" displayName="APPLICATION_LAYER" projectFiles="true">
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcp.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDhcps.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDns.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpipDnss.yml</itemPath>
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/tcpip_apps_config.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/APPLICATION_LAYER/APPLICATION_LAYER.yml</itemPath>
             </logicalFolder>
-            <logicalFolder name="f2" displayName="BASIC_CONFIGURATION" projectFiles="true">
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
+            <logicalFolder name="f4" displayName="BASIC_CONFIGURATION" projectFiles="true">
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpip_basic_config.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/tcpipCmd.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/BASIC_CONFIGURATION/BASIC_CONFIGURATION.yml</itemPath>
             </logicalFolder>
-            <logicalFolder name="f3" displayName="DRIVER_LAYER" projectFiles="true">
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
+            <logicalFolder name="f1" displayName="DRIVER_LAYER" projectFiles="true">
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/tcpip_driver_config.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/DRIVER_LAYER/DRIVER_LAYER.yml</itemPath>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="NETWORK_LAYER" projectFiles="true">
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
+            <logicalFolder name="f6" displayName="NETWORK_LAYER" projectFiles="true">
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipArp.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIcmp.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpipIPv4.yml</itemPath>
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/tcpip_network_config.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/NETWORK_LAYER/NETWORK_LAYER.yml</itemPath>
             </logicalFolder>
             <logicalFolder name="f5" displayName="PRESENTATION_LAYER" projectFiles="true">
-              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/PRESENTATION_LAYER.yml</itemPath>
+              <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/PRESENTATION_LAYER/net_Pres.yml</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="TRANSPORT_LAYER" projectFiles="true">
+            <logicalFolder name="f3" displayName="TRANSPORT_LAYER" projectFiles="true">
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipTcp.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpipUdp.yml</itemPath>
               <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/TRANSPORT_LAYER/tcpip_transport_config.yml</itemPath>
@@ -764,36 +766,36 @@
             </logicalFolder>
             <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/TCP_IP_STACK/TCP_IP_STACK.yml</itemPath>
           </logicalFolder>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/core_timer.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/tcpipSntp.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/System_Configuration.yml</itemPath>
           <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/drvWifiPic32mzw1.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/drv_ba414e.yml</itemPath>
           <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/HarmonyCore.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_console.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/core_timer.yml</itemPath>
           <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/lib_crypto.yml</itemPath>
           <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/lib_pahomqtt.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/nvm.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/System_Configuration.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_command.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_console.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_debug.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_time.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
-          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/tcpipSntp.yml</itemPath>
           <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/tcpipStack.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_command.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/drv_ba414e.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/lib_wolfcrypt.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_time.yml</itemPath>
           <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/uart1.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/sys_debug.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/nvm.yml</itemPath>
+          <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/System_Configuration/tcpipNetConfig.yml</itemPath>
         </logicalFolder>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/BSP_PIC32MZ_W1_Curiosity.yml</itemPath>
         <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/core.yml</itemPath>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/GraphSettings.yml</itemPath>
         <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/project.yml</itemPath>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysWifiProvPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysNetPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/dfp.yml</itemPath>
         <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/stdio.yml</itemPath>
         <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysMqttPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysNetPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysWifiPic32mzw1.yml</itemPath>
-        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysWifiProvPic32mzw1.yml</itemPath>
         <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/uart3.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/sysWifiPic32mzw1.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/simple_iot_application/simple_iot_application.mhc/BSP_PIC32MZ_W1_Curiosity.yml</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
         <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
@@ -814,7 +816,7 @@
         <targetDevice>PIC32MZ1025W104132</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>ICD4Tool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>3.01</languageToolchainVersion>
         <platform>4</platform>
@@ -863,7 +865,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
-        <property key="make-warnings-into-errors" value="true"/>
+        <property key="make-warnings-into-errors" value="false"/>
         <property key="optimization-level" value="-O1"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>

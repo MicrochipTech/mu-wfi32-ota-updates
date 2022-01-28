@@ -19,6 +19,13 @@ children:
       - type: Dynamic
         attributes: {id: net_Pres, value: 'true'}
   - type: Boolean
+    attributes: {id: NET_PRES_SUPPORT_ENCRYPTION}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: net_Pres, value: 'false'}
+  - type: Boolean
     attributes: {id: NET_PRES_SUPPORT_STREAM}
     children:
     - type: Values
