@@ -10,5 +10,5 @@ settings:
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   MERGE_STRATEGY: ALL
-  PackageFilter: crypto;dev_packs;net;core;bsp;quick_docs;usb;cryptoauthlib;wireless_wifi;csp;wireless_system_pic32mzw1_wfi32e01;wireless_apps_pic32mzw1_wfi32e01
+  PackageFilter: crypto;dev_packs;net;core;bsp;quick_docs;wireless_wifi;csp;wireless_system_pic32mzw1_wfi32e01
   TRUSTZONE: 'false'

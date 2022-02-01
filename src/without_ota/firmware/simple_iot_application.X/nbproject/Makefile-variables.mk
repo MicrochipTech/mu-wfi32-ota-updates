@@ -8,6 +8,3 @@ CND_BASEDIR=`pwd`
 CND_ARTIFACT_DIR_simple_iot_application=dist/simple_iot_application/production
 CND_ARTIFACT_NAME_simple_iot_application=simple_iot_application.X.production.hex
 CND_ARTIFACT_PATH_simple_iot_application=dist/simple_iot_application/production/simple_iot_application.X.production.hex
-CND_PACKAGE_DIR_simple_iot_application=${CND_DISTDIR}/simple_iot_application/package
-CND_PACKAGE_NAME_simple_iot_application=simpleiotapplication.x.tar
-CND_PACKAGE_PATH_simple_iot_application=${CND_DISTDIR}/simple_iot_application/package/simpleiotapplication.x.tar

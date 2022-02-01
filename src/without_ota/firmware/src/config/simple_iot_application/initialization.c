@@ -701,7 +701,6 @@ void SYS_Initialize ( void* data )
 
 	GPIO_Initialize();
 
-	BSP_Initialize();
     NVM_Initialize();
 
     CORETIMER_Initialize();
@@ -709,6 +708,7 @@ void SYS_Initialize ( void* data )
 
 	UART1_Initialize();
 
+	BSP_Initialize();
 
     /* Initialize the PIC32MZW1 Driver */
     CRYPT_RNG_Initialize(&wdrvRngCtx);
