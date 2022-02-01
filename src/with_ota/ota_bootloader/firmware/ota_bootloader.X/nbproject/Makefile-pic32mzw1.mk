@@ -30,12 +30,12 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
 OUTPUT_SUFFIX=elf
 DEBUGGABLE_SUFFIX=elf
-FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 else
 IMAGE_TYPE=production
 OUTPUT_SUFFIX=hex
 DEBUGGABLE_SUFFIX=elf
-FINAL_IMAGE=dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
 ifeq ($(COMPARE_BUILD), true)
@@ -88,7 +88,7 @@ FIXDEPS=fixDeps
 ifneq ($(INFORMATION_MESSAGE), )
 	@echo $(INFORMATION_MESSAGE)
 endif
-	${MAKE}  -f nbproject/Makefile-pic32mzw1.mk dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	${MAKE}  -f nbproject/Makefile-pic32mzw1.mk ${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
 MP_PROCESSOR_OPTION=32MZ1025W104132
 MP_LINKER_FILE_OPTION=,--script="../src/bootloader/p32MZ1025W104132_bootloader.ld"
@@ -101,37 +101,37 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assembleWithPreprocess
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  .generated_files/flags/pic32mzw1/46c1cd85e81e0dc80dbfedcfc8cb43d25e86f2d1 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  .generated_files/flags/pic32mzw1/72ba2070c18b818074d5d26cb48b1c2e87a32ee2 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1289446431" 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.ok ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.err 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d"  -o ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.asm.d",--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--gdwarf-2,--defsym=__DEBUG=1 
+	${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d"  -o ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.asm.d",--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--gdwarf-2,--defsym=__DEBUG=1 -mdfp="${DFP_DIR}"
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d" "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o: ../src/config/pic32mzw1/exceptionsHandler.S  .generated_files/flags/pic32mzw1/b00b91f4a36fa637eb2a894862efa35cca8d7037 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o: ../src/config/pic32mzw1/exceptionsHandler.S  .generated_files/flags/pic32mzw1/349f11a60749793f0a2a6489d17dc545b0c772c4 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.ok ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.err 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d"  -o ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o ../src/config/pic32mzw1/exceptionsHandler.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.asm.d",--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--gdwarf-2,--defsym=__DEBUG=1 
+	${MP_CC} $(MP_EXTRA_AS_PRE)  -D__DEBUG  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d"  -o ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o ../src/config/pic32mzw1/exceptionsHandler.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.asm.d",--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--gdwarf-2,--defsym=__DEBUG=1 -mdfp="${DFP_DIR}"
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d" "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../ 
 	
 else
-${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  .generated_files/flags/pic32mzw1/4e8b034af3e1acff3bcdb69f14ff9bf673372769 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  .generated_files/flags/pic32mzw1/dfc02a7c36dc2487a1ea6d3ea793ec1ffb09f1e8 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1289446431" 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.ok ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.err 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d"  -o ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.asm.d",--gdwarf-2 
+	${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d"  -o ${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o ../src/config/pic32mzw1/peripheral/cache/plib_cache_pic32mz.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.asm.d",--gdwarf-2 -mdfp="${DFP_DIR}"
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.d" "${OBJECTDIR}/_ext/1289446431/plib_cache_pic32mz.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o: ../src/config/pic32mzw1/exceptionsHandler.S  .generated_files/flags/pic32mzw1/dbf2054485c0e8ffa23e38fe419e22d6ee3338ef .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o: ../src/config/pic32mzw1/exceptionsHandler.S  .generated_files/flags/pic32mzw1/4bf0e744279d70af72909a0693dd7b282bcae846 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.ok ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.err 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d"  -o ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o ../src/config/pic32mzw1/exceptionsHandler.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.asm.d",--gdwarf-2 
+	${MP_CC} $(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d"  -o ${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o ../src/config/pic32mzw1/exceptionsHandler.S  -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),-MD="${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.asm.d",--gdwarf-2 -mdfp="${DFP_DIR}"
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.d" "${OBJECTDIR}/_ext/1058221795/exceptionsHandler.o.asm.d" -t $(SILENT) -rsi ${MP_CC_DIR}../ 
 	
 endif
@@ -139,390 +139,390 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1505089206/csv.o: ../src/bootloader/csv/csv.c  .generated_files/flags/pic32mzw1/2b0b8a69e823751d48a5c29874cc6080fdd63466 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1505089206/csv.o: ../src/bootloader/csv/csv.c  .generated_files/flags/pic32mzw1/4af426ba531b9da0bbbc48d24022a19a8f7d3186 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1505089206" 
 	@${RM} ${OBJECTDIR}/_ext/1505089206/csv.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1505089206/csv.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1505089206/csv.o.d" -o ${OBJECTDIR}/_ext/1505089206/csv.o ../src/bootloader/csv/csv.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1505089206/csv.o.d" -o ${OBJECTDIR}/_ext/1505089206/csv.o ../src/bootloader/csv/csv.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/bootloader.o: ../src/bootloader/bootloader.c  .generated_files/flags/pic32mzw1/95fb0c84727550260aaf9ea9ee5facc7bf209eb0 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/bootloader.o: ../src/bootloader/bootloader.c  .generated_files/flags/pic32mzw1/77252d6686bf879ecd372ea1da10651eb48e0b38 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/bootloader.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/bootloader.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/bootloader.o.d" -o ${OBJECTDIR}/_ext/302149311/bootloader.o ../src/bootloader/bootloader.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/bootloader.o.d" -o ${OBJECTDIR}/_ext/302149311/bootloader.o ../src/bootloader/bootloader.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/int_flash.o: ../src/bootloader/int_flash.c  .generated_files/flags/pic32mzw1/ffd3cca8942a2d53e79d6452965552ddea1ccec7 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/int_flash.o: ../src/bootloader/int_flash.c  .generated_files/flags/pic32mzw1/88f70c5727d9cba6df3cc12fc6d61297d12587c4 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/int_flash.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/int_flash.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/int_flash.o.d" -o ${OBJECTDIR}/_ext/302149311/int_flash.o ../src/bootloader/int_flash.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/int_flash.o.d" -o ${OBJECTDIR}/_ext/302149311/int_flash.o ../src/bootloader/int_flash.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/sha256.o: ../src/bootloader/sha256.c  .generated_files/flags/pic32mzw1/fc2a7ef45ddf325fa259528e7edfce12290496ab .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/sha256.o: ../src/bootloader/sha256.c  .generated_files/flags/pic32mzw1/3120a2255042f08b57800abec522d99ba44ec1a3 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/sha256.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/sha256.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/sha256.o.d" -o ${OBJECTDIR}/_ext/302149311/sha256.o ../src/bootloader/sha256.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/sha256.o.d" -o ${OBJECTDIR}/_ext/302149311/sha256.o ../src/bootloader/sha256.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/ota_database_parser.o: ../src/bootloader/ota_database_parser.c  .generated_files/flags/pic32mzw1/26d423f5e4ce1dd56f081a6ee68b0f8002c8bc04 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/ota_database_parser.o: ../src/bootloader/ota_database_parser.c  .generated_files/flags/pic32mzw1/16bf0f587a900d4dbacb79e72439c2f4c2b1393d .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/ota_database_parser.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/ota_database_parser.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/ota_database_parser.o.d" -o ${OBJECTDIR}/_ext/302149311/ota_database_parser.o ../src/bootloader/ota_database_parser.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/ota_database_parser.o.d" -o ${OBJECTDIR}/_ext/302149311/ota_database_parser.o ../src/bootloader/ota_database_parser.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/305408435/bsp.o: ../src/config/pic32mzw1/bsp/bsp.c  .generated_files/flags/pic32mzw1/d8323c9cb7b7c7d62a087822ecb1a1076fe0ec47 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/305408435/bsp.o: ../src/config/pic32mzw1/bsp/bsp.c  .generated_files/flags/pic32mzw1/e20593543675cd92865f061cdc3d7bbaf057e12f .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/305408435" 
 	@${RM} ${OBJECTDIR}/_ext/305408435/bsp.o.d 
 	@${RM} ${OBJECTDIR}/_ext/305408435/bsp.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/305408435/bsp.o.d" -o ${OBJECTDIR}/_ext/305408435/bsp.o ../src/config/pic32mzw1/bsp/bsp.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/305408435/bsp.o.d" -o ${OBJECTDIR}/_ext/305408435/bsp.o ../src/config/pic32mzw1/bsp/bsp.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1704679509/drv_memory.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory.c  .generated_files/flags/pic32mzw1/1444fa34506be4a20ba9fe04e01b867667075c2e .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1704679509/drv_memory.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory.c  .generated_files/flags/pic32mzw1/280ea89b4c0473816aab06d740bf76da637f69fb .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1704679509" 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory.o ../src/config/pic32mzw1/driver/memory/src/drv_memory.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory.o ../src/config/pic32mzw1/driver/memory/src/drv_memory.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c  .generated_files/flags/pic32mzw1/6a2ffa57fc0e0db5c2d3e608c6a4355f758e88e1 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c  .generated_files/flags/pic32mzw1/cf524532e9994d054706186714a87f72a6a5d6cf .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1704679509" 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1559640120/drv_sst26.o: ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c  .generated_files/flags/pic32mzw1/e449f63f1927493eeb1a533303af9a5c9c4c6313 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1559640120/drv_sst26.o: ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c  .generated_files/flags/pic32mzw1/cb35417f0f85276f7d7b41a65983322df07e513e .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1559640120" 
 	@${RM} ${OBJECTDIR}/_ext/1559640120/drv_sst26.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1559640120/drv_sst26.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1559640120/drv_sst26.o.d" -o ${OBJECTDIR}/_ext/1559640120/drv_sst26.o ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1559640120/drv_sst26.o.d" -o ${OBJECTDIR}/_ext/1559640120/drv_sst26.o ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1289446431/plib_cache.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache.c  .generated_files/flags/pic32mzw1/8bfefd30272ac54c7891e13e57de7db9c1159e0a .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1289446431/plib_cache.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache.c  .generated_files/flags/pic32mzw1/668dc3953bcca70b5c2dc223081293dea55b7139 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1289446431" 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache.o.d" -o ${OBJECTDIR}/_ext/1289446431/plib_cache.o ../src/config/pic32mzw1/peripheral/cache/plib_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache.o.d" -o ${OBJECTDIR}/_ext/1289446431/plib_cache.o ../src/config/pic32mzw1/peripheral/cache/plib_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1476200127/plib_clk.o: ../src/config/pic32mzw1/peripheral/clk/plib_clk.c  .generated_files/flags/pic32mzw1/8a2819d204903be4ef6c3f288401f252e18c7ed4 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1476200127/plib_clk.o: ../src/config/pic32mzw1/peripheral/clk/plib_clk.c  .generated_files/flags/pic32mzw1/febcca179a7296a325d3e1e6b0335e63d9e0e44f .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1476200127" 
 	@${RM} ${OBJECTDIR}/_ext/1476200127/plib_clk.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1476200127/plib_clk.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476200127/plib_clk.o.d" -o ${OBJECTDIR}/_ext/1476200127/plib_clk.o ../src/config/pic32mzw1/peripheral/clk/plib_clk.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476200127/plib_clk.o.d" -o ${OBJECTDIR}/_ext/1476200127/plib_clk.o ../src/config/pic32mzw1/peripheral/clk/plib_clk.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1482505548/plib_evic.o: ../src/config/pic32mzw1/peripheral/evic/plib_evic.c  .generated_files/flags/pic32mzw1/12e3b3e83421db2442123489b4ac5e1552c9ce9f .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1482505548/plib_evic.o: ../src/config/pic32mzw1/peripheral/evic/plib_evic.c  .generated_files/flags/pic32mzw1/e3c4f9313d267033f49064dcdf9cc94f5679648d .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1482505548" 
 	@${RM} ${OBJECTDIR}/_ext/1482505548/plib_evic.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1482505548/plib_evic.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482505548/plib_evic.o.d" -o ${OBJECTDIR}/_ext/1482505548/plib_evic.o ../src/config/pic32mzw1/peripheral/evic/plib_evic.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482505548/plib_evic.o.d" -o ${OBJECTDIR}/_ext/1482505548/plib_evic.o ../src/config/pic32mzw1/peripheral/evic/plib_evic.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1482559376/plib_gpio.o: ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c  .generated_files/flags/pic32mzw1/6ebf03c3185710075c7f1f740e15b78900eb0d26 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1482559376/plib_gpio.o: ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c  .generated_files/flags/pic32mzw1/239eeb12a38728287ce8a6622e3e6134bc7be43b .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1482559376" 
 	@${RM} ${OBJECTDIR}/_ext/1482559376/plib_gpio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1482559376/plib_gpio.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482559376/plib_gpio.o.d" -o ${OBJECTDIR}/_ext/1482559376/plib_gpio.o ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482559376/plib_gpio.o.d" -o ${OBJECTDIR}/_ext/1482559376/plib_gpio.o ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1476189244/plib_nvm.o: ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c  .generated_files/flags/pic32mzw1/8cc5007fa98f41baf02b54e8cb28bfa4ff947698 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1476189244/plib_nvm.o: ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c  .generated_files/flags/pic32mzw1/8569d10dfd88a7325ba17afe942d13a3695ce .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1476189244" 
 	@${RM} ${OBJECTDIR}/_ext/1476189244/plib_nvm.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1476189244/plib_nvm.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476189244/plib_nvm.o.d" -o ${OBJECTDIR}/_ext/1476189244/plib_nvm.o ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476189244/plib_nvm.o.d" -o ${OBJECTDIR}/_ext/1476189244/plib_nvm.o ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/377196313/plib_spi1_master.o: ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c  .generated_files/flags/pic32mzw1/25ffd0f2c2fdecd34fe5974fce0230eab5693523 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/377196313/plib_spi1_master.o: ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c  .generated_files/flags/pic32mzw1/389e5ced37a66bb8ac7780fd0501044aca30c316 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/377196313" 
 	@${RM} ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o.d 
 	@${RM} ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/377196313/plib_spi1_master.o.d" -o ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/377196313/plib_spi1_master.o.d" -o ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1482962319/plib_uart1.o: ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c  .generated_files/flags/pic32mzw1/e61c71979501e4b4ecc924e84daa3eb47d3c97f5 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1482962319/plib_uart1.o: ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c  .generated_files/flags/pic32mzw1/f7bd40146a31f641b68905e65ee87d8733d4854e .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1482962319" 
 	@${RM} ${OBJECTDIR}/_ext/1482962319/plib_uart1.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1482962319/plib_uart1.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482962319/plib_uart1.o.d" -o ${OBJECTDIR}/_ext/1482962319/plib_uart1.o ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482962319/plib_uart1.o.d" -o ${OBJECTDIR}/_ext/1482962319/plib_uart1.o ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1424008425/xc32_monitor.o: ../src/config/pic32mzw1/stdio/xc32_monitor.c  .generated_files/flags/pic32mzw1/e24f40858f7fa0809728c1f5aba0e47b6de0f7cf .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1424008425/xc32_monitor.o: ../src/config/pic32mzw1/stdio/xc32_monitor.c  .generated_files/flags/pic32mzw1/c3247c2be76fb8cad4080f5a51fa7e38389987ae .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1424008425" 
 	@${RM} ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1424008425/xc32_monitor.o.d" -o ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o ../src/config/pic32mzw1/stdio/xc32_monitor.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1424008425/xc32_monitor.o.d" -o ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o ../src/config/pic32mzw1/stdio/xc32_monitor.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/687152980/sys_cache.o: ../src/config/pic32mzw1/system/cache/sys_cache.c  .generated_files/flags/pic32mzw1/7f26859d4137f1ec5b551c30c325e81cb96959c8 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/687152980/sys_cache.o: ../src/config/pic32mzw1/system/cache/sys_cache.c  .generated_files/flags/pic32mzw1/2c9b2e8779515d882d479ba2fccc5e3c65a58d51 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/687152980" 
 	@${RM} ${OBJECTDIR}/_ext/687152980/sys_cache.o.d 
 	@${RM} ${OBJECTDIR}/_ext/687152980/sys_cache.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/687152980/sys_cache.o.d" -o ${OBJECTDIR}/_ext/687152980/sys_cache.o ../src/config/pic32mzw1/system/cache/sys_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/687152980/sys_cache.o.d" -o ${OBJECTDIR}/_ext/687152980/sys_cache.o ../src/config/pic32mzw1/system/cache/sys_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/456523338/ff.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c  .generated_files/flags/pic32mzw1/a76ff97b9ff5a970e085b109fbb8859d1ed2485a .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/456523338/ff.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c  .generated_files/flags/pic32mzw1/b36745be49dcd410c4c71b4fcee4f43c80d0fd91 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/456523338" 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ff.o.d 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ff.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ff.o.d" -o ${OBJECTDIR}/_ext/456523338/ff.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ff.o.d" -o ${OBJECTDIR}/_ext/456523338/ff.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/456523338/ffunicode.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c  .generated_files/flags/pic32mzw1/4a0347205de0f773925ce7f455f799923365d8eb .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/456523338/ffunicode.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c  .generated_files/flags/pic32mzw1/7dd4fb086fd87e1e383b535e5c203fa01eff848a .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/456523338" 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ffunicode.o.d 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ffunicode.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ffunicode.o.d" -o ${OBJECTDIR}/_ext/456523338/ffunicode.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ffunicode.o.d" -o ${OBJECTDIR}/_ext/456523338/ffunicode.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1514505107/diskio.o: ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c  .generated_files/flags/pic32mzw1/771e3d279000958e9c3b1ded0eb1d6ba892729d3 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1514505107/diskio.o: ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c  .generated_files/flags/pic32mzw1/b97ed8700d1f8eeae05f427618db2b536647a37c .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1514505107" 
 	@${RM} ${OBJECTDIR}/_ext/1514505107/diskio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1514505107/diskio.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1514505107/diskio.o.d" -o ${OBJECTDIR}/_ext/1514505107/diskio.o ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1514505107/diskio.o.d" -o ${OBJECTDIR}/_ext/1514505107/diskio.o ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/72121328/sys_fs.o: ../src/config/pic32mzw1/system/fs/src/sys_fs.c  .generated_files/flags/pic32mzw1/db20c0959660ba6bd03e87a3e2cd0323b48cec1b .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/72121328/sys_fs.o: ../src/config/pic32mzw1/system/fs/src/sys_fs.c  .generated_files/flags/pic32mzw1/c2995c8e86dfb2dfe7c6a1986af25d9e8d4dcc83 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/72121328" 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs.o.d 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs.o ../src/config/pic32mzw1/system/fs/src/sys_fs.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs.o ../src/config/pic32mzw1/system/fs/src/sys_fs.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c  .generated_files/flags/pic32mzw1/ebeba5f9459314c72ac9c115bac171aaf893a533 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c  .generated_files/flags/pic32mzw1/b3c5b3025d7fcbb8c50d7b5907fd15920da1cc68 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/72121328" 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o.d 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c  .generated_files/flags/pic32mzw1/5da00f79259e2d76edf6716b6ca464bf1d447aa3 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c  .generated_files/flags/pic32mzw1/66a6ef65e132e4c38b417a6b3f2ac2df64c964e7 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/72121328" 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o.d 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/345302806/sys_int.o: ../src/config/pic32mzw1/system/int/src/sys_int.c  .generated_files/flags/pic32mzw1/50a082c94d8d37e7f0b5b20e84e1f8e5a0cc0063 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/345302806/sys_int.o: ../src/config/pic32mzw1/system/int/src/sys_int.c  .generated_files/flags/pic32mzw1/5fa75f77cddd6770202dfd7499f667fde11d5981 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/345302806" 
 	@${RM} ${OBJECTDIR}/_ext/345302806/sys_int.o.d 
 	@${RM} ${OBJECTDIR}/_ext/345302806/sys_int.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/345302806/sys_int.o.d" -o ${OBJECTDIR}/_ext/345302806/sys_int.o ../src/config/pic32mzw1/system/int/src/sys_int.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/345302806/sys_int.o.d" -o ${OBJECTDIR}/_ext/345302806/sys_int.o ../src/config/pic32mzw1/system/int/src/sys_int.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/initialization.o: ../src/config/pic32mzw1/initialization.c  .generated_files/flags/pic32mzw1/ee5db36bdc4d90df3d0bb01c530583e603f0012e .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/initialization.o: ../src/config/pic32mzw1/initialization.c  .generated_files/flags/pic32mzw1/1d9a06968929a48f603f0c8f6bb37789bc04c322 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/initialization.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/initialization.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/initialization.o.d" -o ${OBJECTDIR}/_ext/1058221795/initialization.o ../src/config/pic32mzw1/initialization.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/initialization.o.d" -o ${OBJECTDIR}/_ext/1058221795/initialization.o ../src/config/pic32mzw1/initialization.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/interrupts.o: ../src/config/pic32mzw1/interrupts.c  .generated_files/flags/pic32mzw1/d1925ff8766fd374205e74b5e1a046e73396ff20 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/interrupts.o: ../src/config/pic32mzw1/interrupts.c  .generated_files/flags/pic32mzw1/c74ccd19dd81f83dfc04005c6138a8332f2ad130 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/interrupts.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/interrupts.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/interrupts.o.d" -o ${OBJECTDIR}/_ext/1058221795/interrupts.o ../src/config/pic32mzw1/interrupts.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/interrupts.o.d" -o ${OBJECTDIR}/_ext/1058221795/interrupts.o ../src/config/pic32mzw1/interrupts.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/tasks.o: ../src/config/pic32mzw1/tasks.c  .generated_files/flags/pic32mzw1/616d06036352d13ce51723d884de55a0b6d76444 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/tasks.o: ../src/config/pic32mzw1/tasks.c  .generated_files/flags/pic32mzw1/e7267f361d5802b873c02e3c213df56a2f5d4d91 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/tasks.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/tasks.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/tasks.o.d" -o ${OBJECTDIR}/_ext/1058221795/tasks.o ../src/config/pic32mzw1/tasks.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/tasks.o.d" -o ${OBJECTDIR}/_ext/1058221795/tasks.o ../src/config/pic32mzw1/tasks.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/exceptions.o: ../src/config/pic32mzw1/exceptions.c  .generated_files/flags/pic32mzw1/b8403ec536c578efe0dfc01f78941dca36dc155f .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/exceptions.o: ../src/config/pic32mzw1/exceptions.c  .generated_files/flags/pic32mzw1/3672b5491d04b01841b6289e9409e2a33f1b6762 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptions.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptions.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptions.o.d" -o ${OBJECTDIR}/_ext/1058221795/exceptions.o ../src/config/pic32mzw1/exceptions.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptions.o.d" -o ${OBJECTDIR}/_ext/1058221795/exceptions.o ../src/config/pic32mzw1/exceptions.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/pmu_init.o: ../src/config/pic32mzw1/pmu_init.c  .generated_files/flags/pic32mzw1/66e42ce67376c8b7ef10922ecf3530226d70acad .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/pmu_init.o: ../src/config/pic32mzw1/pmu_init.c  .generated_files/flags/pic32mzw1/36cda359c15762b869bb098cffda18462c742a42 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/pmu_init.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/pmu_init.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/pmu_init.o.d" -o ${OBJECTDIR}/_ext/1058221795/pmu_init.o ../src/config/pic32mzw1/pmu_init.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/pmu_init.o.d" -o ${OBJECTDIR}/_ext/1058221795/pmu_init.o ../src/config/pic32mzw1/pmu_init.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/pic32mzw1/8e80a41fef341b268d6b8e4352c4efb5313d18cd .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/pic32mzw1/2beb36ca49691b27fa4d956669cdef438041d7f2 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d" -o ${OBJECTDIR}/_ext/1360937237/main.o ../src/main.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d" -o ${OBJECTDIR}/_ext/1360937237/main.o ../src/main.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/pic32mzw1/9f35ba200056f695ff612c357d745c2b219b3b03 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/pic32mzw1/7a98fc2196620d582cc7740d7e87ce2ce540ae2e .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/app.o.d" -o ${OBJECTDIR}/_ext/1360937237/app.o ../src/app.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/app.o.d" -o ${OBJECTDIR}/_ext/1360937237/app.o ../src/app.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 else
-${OBJECTDIR}/_ext/1505089206/csv.o: ../src/bootloader/csv/csv.c  .generated_files/flags/pic32mzw1/bdd49c0646ac12cbf0ab0b67f6ae8c4eabda96cf .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1505089206/csv.o: ../src/bootloader/csv/csv.c  .generated_files/flags/pic32mzw1/36a6133f5c648ca2f6cbbdac034b7b614a61a173 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1505089206" 
 	@${RM} ${OBJECTDIR}/_ext/1505089206/csv.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1505089206/csv.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1505089206/csv.o.d" -o ${OBJECTDIR}/_ext/1505089206/csv.o ../src/bootloader/csv/csv.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1505089206/csv.o.d" -o ${OBJECTDIR}/_ext/1505089206/csv.o ../src/bootloader/csv/csv.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/bootloader.o: ../src/bootloader/bootloader.c  .generated_files/flags/pic32mzw1/f77d011b585e54b35c75ce04da84b78eded3d611 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/bootloader.o: ../src/bootloader/bootloader.c  .generated_files/flags/pic32mzw1/a29a9f71323da116a5de816ef882ea6ee0077eb5 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/bootloader.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/bootloader.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/bootloader.o.d" -o ${OBJECTDIR}/_ext/302149311/bootloader.o ../src/bootloader/bootloader.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/bootloader.o.d" -o ${OBJECTDIR}/_ext/302149311/bootloader.o ../src/bootloader/bootloader.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/int_flash.o: ../src/bootloader/int_flash.c  .generated_files/flags/pic32mzw1/74728a06505eb6f5e57df3a344f9041d740303ab .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/int_flash.o: ../src/bootloader/int_flash.c  .generated_files/flags/pic32mzw1/4f836c38aeb5990310e0fa7f2e7dbbbed42c6bf1 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/int_flash.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/int_flash.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/int_flash.o.d" -o ${OBJECTDIR}/_ext/302149311/int_flash.o ../src/bootloader/int_flash.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/int_flash.o.d" -o ${OBJECTDIR}/_ext/302149311/int_flash.o ../src/bootloader/int_flash.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/sha256.o: ../src/bootloader/sha256.c  .generated_files/flags/pic32mzw1/6718429c4b5efae874b23c35131f87573927c7f6 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/sha256.o: ../src/bootloader/sha256.c  .generated_files/flags/pic32mzw1/656079183832f4123741b0ef67b46910e22e972 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/sha256.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/sha256.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/sha256.o.d" -o ${OBJECTDIR}/_ext/302149311/sha256.o ../src/bootloader/sha256.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/sha256.o.d" -o ${OBJECTDIR}/_ext/302149311/sha256.o ../src/bootloader/sha256.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/302149311/ota_database_parser.o: ../src/bootloader/ota_database_parser.c  .generated_files/flags/pic32mzw1/956c7ace4e31e1557523990c9567f36032e3ed17 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/302149311/ota_database_parser.o: ../src/bootloader/ota_database_parser.c  .generated_files/flags/pic32mzw1/b51c6a09212cb2b3a1dc8a839b773cb3cca76ae5 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/302149311" 
 	@${RM} ${OBJECTDIR}/_ext/302149311/ota_database_parser.o.d 
 	@${RM} ${OBJECTDIR}/_ext/302149311/ota_database_parser.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/ota_database_parser.o.d" -o ${OBJECTDIR}/_ext/302149311/ota_database_parser.o ../src/bootloader/ota_database_parser.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/302149311/ota_database_parser.o.d" -o ${OBJECTDIR}/_ext/302149311/ota_database_parser.o ../src/bootloader/ota_database_parser.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/305408435/bsp.o: ../src/config/pic32mzw1/bsp/bsp.c  .generated_files/flags/pic32mzw1/ab42d1ad8fd80d1e21cb1a5b4365d5fc0710ea69 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/305408435/bsp.o: ../src/config/pic32mzw1/bsp/bsp.c  .generated_files/flags/pic32mzw1/31425f7a68261f06b44f18b2c4d9a27b9706f5cd .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/305408435" 
 	@${RM} ${OBJECTDIR}/_ext/305408435/bsp.o.d 
 	@${RM} ${OBJECTDIR}/_ext/305408435/bsp.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/305408435/bsp.o.d" -o ${OBJECTDIR}/_ext/305408435/bsp.o ../src/config/pic32mzw1/bsp/bsp.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/305408435/bsp.o.d" -o ${OBJECTDIR}/_ext/305408435/bsp.o ../src/config/pic32mzw1/bsp/bsp.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1704679509/drv_memory.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory.c  .generated_files/flags/pic32mzw1/86973383625f872c1a3cd573c02a716b5ad86902 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1704679509/drv_memory.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory.c  .generated_files/flags/pic32mzw1/b3120fa218ee5236d36aa23a1b337f66015d1206 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1704679509" 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory.o ../src/config/pic32mzw1/driver/memory/src/drv_memory.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory.o ../src/config/pic32mzw1/driver/memory/src/drv_memory.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c  .generated_files/flags/pic32mzw1/4aa9f2bef5648086f750e0e9a1eab1e102e25582 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o: ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c  .generated_files/flags/pic32mzw1/abbc8d17c30fbf1b307ed295cd198769ce23e0c4 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1704679509" 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o.d" -o ${OBJECTDIR}/_ext/1704679509/drv_memory_file_system.o ../src/config/pic32mzw1/driver/memory/src/drv_memory_file_system.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1559640120/drv_sst26.o: ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c  .generated_files/flags/pic32mzw1/3c7dba08dda48b3f3c44c280cd40e2d9ac326930 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1559640120/drv_sst26.o: ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c  .generated_files/flags/pic32mzw1/733e2ddf25b16d3d247d572d20df8c00c8fd61d7 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1559640120" 
 	@${RM} ${OBJECTDIR}/_ext/1559640120/drv_sst26.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1559640120/drv_sst26.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1559640120/drv_sst26.o.d" -o ${OBJECTDIR}/_ext/1559640120/drv_sst26.o ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1559640120/drv_sst26.o.d" -o ${OBJECTDIR}/_ext/1559640120/drv_sst26.o ../src/config/pic32mzw1/driver/sst26/src/drv_sst26.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1289446431/plib_cache.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache.c  .generated_files/flags/pic32mzw1/5ab84b09d72d96240a5624b1fca76f27a8fc27f8 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1289446431/plib_cache.o: ../src/config/pic32mzw1/peripheral/cache/plib_cache.c  .generated_files/flags/pic32mzw1/e676cc100c0d2e3a8cc7050173053e45c5ca3d26 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1289446431" 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1289446431/plib_cache.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache.o.d" -o ${OBJECTDIR}/_ext/1289446431/plib_cache.o ../src/config/pic32mzw1/peripheral/cache/plib_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1289446431/plib_cache.o.d" -o ${OBJECTDIR}/_ext/1289446431/plib_cache.o ../src/config/pic32mzw1/peripheral/cache/plib_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1476200127/plib_clk.o: ../src/config/pic32mzw1/peripheral/clk/plib_clk.c  .generated_files/flags/pic32mzw1/75830f088762e27b7a4228181f4cc5f9ec1f2de4 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1476200127/plib_clk.o: ../src/config/pic32mzw1/peripheral/clk/plib_clk.c  .generated_files/flags/pic32mzw1/9c9fb69c3476670b86a6248cfaaf626d02ed24fe .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1476200127" 
 	@${RM} ${OBJECTDIR}/_ext/1476200127/plib_clk.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1476200127/plib_clk.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476200127/plib_clk.o.d" -o ${OBJECTDIR}/_ext/1476200127/plib_clk.o ../src/config/pic32mzw1/peripheral/clk/plib_clk.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476200127/plib_clk.o.d" -o ${OBJECTDIR}/_ext/1476200127/plib_clk.o ../src/config/pic32mzw1/peripheral/clk/plib_clk.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1482505548/plib_evic.o: ../src/config/pic32mzw1/peripheral/evic/plib_evic.c  .generated_files/flags/pic32mzw1/d38df6801408f5a1fcbf17e860f832d9277b60d0 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1482505548/plib_evic.o: ../src/config/pic32mzw1/peripheral/evic/plib_evic.c  .generated_files/flags/pic32mzw1/5c8dc2e3cd44d810990cfe58fda9b35aa5a54a8 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1482505548" 
 	@${RM} ${OBJECTDIR}/_ext/1482505548/plib_evic.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1482505548/plib_evic.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482505548/plib_evic.o.d" -o ${OBJECTDIR}/_ext/1482505548/plib_evic.o ../src/config/pic32mzw1/peripheral/evic/plib_evic.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482505548/plib_evic.o.d" -o ${OBJECTDIR}/_ext/1482505548/plib_evic.o ../src/config/pic32mzw1/peripheral/evic/plib_evic.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1482559376/plib_gpio.o: ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c  .generated_files/flags/pic32mzw1/dcd36e24c190c9bd9ce11aa4ef36c5d6b6705ef7 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1482559376/plib_gpio.o: ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c  .generated_files/flags/pic32mzw1/b7fc2d02360171251db064d99b50b458ef1c33db .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1482559376" 
 	@${RM} ${OBJECTDIR}/_ext/1482559376/plib_gpio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1482559376/plib_gpio.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482559376/plib_gpio.o.d" -o ${OBJECTDIR}/_ext/1482559376/plib_gpio.o ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482559376/plib_gpio.o.d" -o ${OBJECTDIR}/_ext/1482559376/plib_gpio.o ../src/config/pic32mzw1/peripheral/gpio/plib_gpio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1476189244/plib_nvm.o: ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c  .generated_files/flags/pic32mzw1/ff3c7dd5677424231bc6d852b145bfe69da59258 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1476189244/plib_nvm.o: ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c  .generated_files/flags/pic32mzw1/cb27780403264fbc91ac69cce7eb916a54f6e790 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1476189244" 
 	@${RM} ${OBJECTDIR}/_ext/1476189244/plib_nvm.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1476189244/plib_nvm.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476189244/plib_nvm.o.d" -o ${OBJECTDIR}/_ext/1476189244/plib_nvm.o ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1476189244/plib_nvm.o.d" -o ${OBJECTDIR}/_ext/1476189244/plib_nvm.o ../src/config/pic32mzw1/peripheral/nvm/plib_nvm.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/377196313/plib_spi1_master.o: ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c  .generated_files/flags/pic32mzw1/2a4010a709a6ec7b20ddc78e81d10b8667db365 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/377196313/plib_spi1_master.o: ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c  .generated_files/flags/pic32mzw1/c11e2ed135f05e2b7d01a66e5ef757fc82596e34 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/377196313" 
 	@${RM} ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o.d 
 	@${RM} ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/377196313/plib_spi1_master.o.d" -o ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/377196313/plib_spi1_master.o.d" -o ${OBJECTDIR}/_ext/377196313/plib_spi1_master.o ../src/config/pic32mzw1/peripheral/spi/spi_master/plib_spi1_master.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1482962319/plib_uart1.o: ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c  .generated_files/flags/pic32mzw1/837ceed1d5fbc6265d49b629ea84b01cfbab028 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1482962319/plib_uart1.o: ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c  .generated_files/flags/pic32mzw1/d09a98bac9d0b7c25ecf78f499fefd186d1cde22 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1482962319" 
 	@${RM} ${OBJECTDIR}/_ext/1482962319/plib_uart1.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1482962319/plib_uart1.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482962319/plib_uart1.o.d" -o ${OBJECTDIR}/_ext/1482962319/plib_uart1.o ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1482962319/plib_uart1.o.d" -o ${OBJECTDIR}/_ext/1482962319/plib_uart1.o ../src/config/pic32mzw1/peripheral/uart/plib_uart1.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1424008425/xc32_monitor.o: ../src/config/pic32mzw1/stdio/xc32_monitor.c  .generated_files/flags/pic32mzw1/deb4a44c0a7d08f8779d99fa4b02f4edd04dc5fd .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1424008425/xc32_monitor.o: ../src/config/pic32mzw1/stdio/xc32_monitor.c  .generated_files/flags/pic32mzw1/c957a9ff960e2e32878295d1efe013f6e7394a71 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1424008425" 
 	@${RM} ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1424008425/xc32_monitor.o.d" -o ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o ../src/config/pic32mzw1/stdio/xc32_monitor.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1424008425/xc32_monitor.o.d" -o ${OBJECTDIR}/_ext/1424008425/xc32_monitor.o ../src/config/pic32mzw1/stdio/xc32_monitor.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/687152980/sys_cache.o: ../src/config/pic32mzw1/system/cache/sys_cache.c  .generated_files/flags/pic32mzw1/7d4e53a672cbfcb7fbe680b3546c642cedadf1ad .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/687152980/sys_cache.o: ../src/config/pic32mzw1/system/cache/sys_cache.c  .generated_files/flags/pic32mzw1/4d6e5b7fd9221541dd2d0d0f9dda28d04d46c9ef .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/687152980" 
 	@${RM} ${OBJECTDIR}/_ext/687152980/sys_cache.o.d 
 	@${RM} ${OBJECTDIR}/_ext/687152980/sys_cache.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/687152980/sys_cache.o.d" -o ${OBJECTDIR}/_ext/687152980/sys_cache.o ../src/config/pic32mzw1/system/cache/sys_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/687152980/sys_cache.o.d" -o ${OBJECTDIR}/_ext/687152980/sys_cache.o ../src/config/pic32mzw1/system/cache/sys_cache.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/456523338/ff.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c  .generated_files/flags/pic32mzw1/e491a7fa3648b51cf7b613c3271401cca44d20c3 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/456523338/ff.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c  .generated_files/flags/pic32mzw1/ae4616d0e7ef34485649ebbc32042503a46f1989 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/456523338" 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ff.o.d 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ff.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ff.o.d" -o ${OBJECTDIR}/_ext/456523338/ff.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ff.o.d" -o ${OBJECTDIR}/_ext/456523338/ff.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ff.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/456523338/ffunicode.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c  .generated_files/flags/pic32mzw1/5708343a0fdcdf3a0ebe3abb9cbf157d75e753e1 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/456523338/ffunicode.o: ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c  .generated_files/flags/pic32mzw1/8d40fa605fe1cda71b703d623cbb7d5a2625308f .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/456523338" 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ffunicode.o.d 
 	@${RM} ${OBJECTDIR}/_ext/456523338/ffunicode.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ffunicode.o.d" -o ${OBJECTDIR}/_ext/456523338/ffunicode.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/456523338/ffunicode.o.d" -o ${OBJECTDIR}/_ext/456523338/ffunicode.o ../src/config/pic32mzw1/system/fs/fat_fs/file_system/ffunicode.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1514505107/diskio.o: ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c  .generated_files/flags/pic32mzw1/e58924cede94c01cdd8d5a3a9bdc602204772663 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1514505107/diskio.o: ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c  .generated_files/flags/pic32mzw1/6d190f986e10e3d8974321f6ccb4e625aa7ef02d .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1514505107" 
 	@${RM} ${OBJECTDIR}/_ext/1514505107/diskio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1514505107/diskio.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1514505107/diskio.o.d" -o ${OBJECTDIR}/_ext/1514505107/diskio.o ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1514505107/diskio.o.d" -o ${OBJECTDIR}/_ext/1514505107/diskio.o ../src/config/pic32mzw1/system/fs/fat_fs/hardware_access/diskio.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/72121328/sys_fs.o: ../src/config/pic32mzw1/system/fs/src/sys_fs.c  .generated_files/flags/pic32mzw1/a57b86ca17122d5b23ace7e6934bacda546cfa4e .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/72121328/sys_fs.o: ../src/config/pic32mzw1/system/fs/src/sys_fs.c  .generated_files/flags/pic32mzw1/9c9fffa2af24bc2f1d419f3ac9800d3d3ef7c86b .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/72121328" 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs.o.d 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs.o ../src/config/pic32mzw1/system/fs/src/sys_fs.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs.o ../src/config/pic32mzw1/system/fs/src/sys_fs.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c  .generated_files/flags/pic32mzw1/588036951110ca6e497185a62f8dd1e05a1df57e .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c  .generated_files/flags/pic32mzw1/b3953263a61abe1fb2c132db3b8222187d33584 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/72121328" 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o.d 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_media_manager.o ../src/config/pic32mzw1/system/fs/src/sys_fs_media_manager.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c  .generated_files/flags/pic32mzw1/b25fecd8697f5a8e541dae7952b022eb7166d24d .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o: ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c  .generated_files/flags/pic32mzw1/7f8f083ff8dd8af001afacdabd7d9dc3b3bb1521 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/72121328" 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o.d 
 	@${RM} ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o.d" -o ${OBJECTDIR}/_ext/72121328/sys_fs_fat_interface.o ../src/config/pic32mzw1/system/fs/src/sys_fs_fat_interface.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/345302806/sys_int.o: ../src/config/pic32mzw1/system/int/src/sys_int.c  .generated_files/flags/pic32mzw1/278c3e13d6b627b5cb505b03333ed631a795c9df .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/345302806/sys_int.o: ../src/config/pic32mzw1/system/int/src/sys_int.c  .generated_files/flags/pic32mzw1/9e3f52a91c50df252424a3474c9ebe8545b08341 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/345302806" 
 	@${RM} ${OBJECTDIR}/_ext/345302806/sys_int.o.d 
 	@${RM} ${OBJECTDIR}/_ext/345302806/sys_int.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/345302806/sys_int.o.d" -o ${OBJECTDIR}/_ext/345302806/sys_int.o ../src/config/pic32mzw1/system/int/src/sys_int.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/345302806/sys_int.o.d" -o ${OBJECTDIR}/_ext/345302806/sys_int.o ../src/config/pic32mzw1/system/int/src/sys_int.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/initialization.o: ../src/config/pic32mzw1/initialization.c  .generated_files/flags/pic32mzw1/83eccb3cfcd5a8b3c11e1fd839bee653476fc436 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/initialization.o: ../src/config/pic32mzw1/initialization.c  .generated_files/flags/pic32mzw1/45e58e3d6bc7a6fb3eb539cbf035a306fcf9634a .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/initialization.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/initialization.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/initialization.o.d" -o ${OBJECTDIR}/_ext/1058221795/initialization.o ../src/config/pic32mzw1/initialization.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/initialization.o.d" -o ${OBJECTDIR}/_ext/1058221795/initialization.o ../src/config/pic32mzw1/initialization.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/interrupts.o: ../src/config/pic32mzw1/interrupts.c  .generated_files/flags/pic32mzw1/b043929b1c1f57b09cbd5b9871d13dd8a6180898 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/interrupts.o: ../src/config/pic32mzw1/interrupts.c  .generated_files/flags/pic32mzw1/a295e36be9b2db8545e33b0115b1232d903e9105 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/interrupts.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/interrupts.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/interrupts.o.d" -o ${OBJECTDIR}/_ext/1058221795/interrupts.o ../src/config/pic32mzw1/interrupts.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/interrupts.o.d" -o ${OBJECTDIR}/_ext/1058221795/interrupts.o ../src/config/pic32mzw1/interrupts.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/tasks.o: ../src/config/pic32mzw1/tasks.c  .generated_files/flags/pic32mzw1/1c8a83aeca34998e78f41b8064d71f428f7119da .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/tasks.o: ../src/config/pic32mzw1/tasks.c  .generated_files/flags/pic32mzw1/8881b949f13511844c6e90791eb2aad6e553d185 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/tasks.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/tasks.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/tasks.o.d" -o ${OBJECTDIR}/_ext/1058221795/tasks.o ../src/config/pic32mzw1/tasks.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/tasks.o.d" -o ${OBJECTDIR}/_ext/1058221795/tasks.o ../src/config/pic32mzw1/tasks.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/exceptions.o: ../src/config/pic32mzw1/exceptions.c  .generated_files/flags/pic32mzw1/18daab93ce8eddcafff39a064b15803a2b015a20 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/exceptions.o: ../src/config/pic32mzw1/exceptions.c  .generated_files/flags/pic32mzw1/ac70dc4f40341bbc41429d61505833aa3db1394a .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptions.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/exceptions.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptions.o.d" -o ${OBJECTDIR}/_ext/1058221795/exceptions.o ../src/config/pic32mzw1/exceptions.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/exceptions.o.d" -o ${OBJECTDIR}/_ext/1058221795/exceptions.o ../src/config/pic32mzw1/exceptions.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1058221795/pmu_init.o: ../src/config/pic32mzw1/pmu_init.c  .generated_files/flags/pic32mzw1/7382a13f4615d2f7badef69f0a3c53771b0c9807 .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1058221795/pmu_init.o: ../src/config/pic32mzw1/pmu_init.c  .generated_files/flags/pic32mzw1/46aa698819a226dd732a6939859ff70f2fe70949 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1058221795" 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/pmu_init.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1058221795/pmu_init.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/pmu_init.o.d" -o ${OBJECTDIR}/_ext/1058221795/pmu_init.o ../src/config/pic32mzw1/pmu_init.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1058221795/pmu_init.o.d" -o ${OBJECTDIR}/_ext/1058221795/pmu_init.o ../src/config/pic32mzw1/pmu_init.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/pic32mzw1/3e46383095b7fcdad3190fcb3defbf8d39ec4aca .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/pic32mzw1/2f95273faea2c9d44f93f2957b287bfe977c299 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d" -o ${OBJECTDIR}/_ext/1360937237/main.o ../src/main.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d" -o ${OBJECTDIR}/_ext/1360937237/main.o ../src/main.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/pic32mzw1/4e73929b21b3b543c919b5815be7959f650dcf0c .generated_files/flags/pic32mzw1/ac79cb83f223a8ad0818d3d13b835d2ffa41ea6e
+${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/pic32mzw1/de61168e0768f8cbf1e2ef10499511d06a6e42f2 .generated_files/flags/pic32mzw1/e426f2e5c1612b585ae714625834ce450de445f0
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/app.o.d" -o ${OBJECTDIR}/_ext/1360937237/app.o ../src/app.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)    
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -ffunction-sections -O1 -I"../../../framework" -I"../src" -I"../src/config/pic32mzw1" -I"../src/config/pic32mzw1/system/fs/fat_fs/file_system" -I"../src/config/pic32mzw1/system/fs/fat_fs/hardware_access" -Werror -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/app.o.d" -o ${OBJECTDIR}/_ext/1360937237/app.o ../src/app.c    -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 
@@ -535,15 +535,15 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    ../src/bootloader/p32MZ1025W104132_bootloader.ld
-	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -g   -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)      -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D=__DEBUG_D,--defsym=_min_heap_size=8192,--gc-sections,--no-code-in-dinit,--no-dinit-in-serial-mem,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml 
+${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    ../src/bootloader/p32MZ1025W104132_bootloader.ld
+	@${MKDIR} ${DISTDIR} 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -g   -mprocessor=$(MP_PROCESSOR_OPTION)  -o ${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)      -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D=__DEBUG_D,--defsym=_min_heap_size=8192,--gc-sections,--no-code-in-dinit,--no-dinit-in-serial-mem,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--memorysummary,${DISTDIR}/memoryfile.xml -mdfp="${DFP_DIR}"
 	
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   ../src/bootloader/p32MZ1025W104132_bootloader.ld
-	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=_min_heap_size=8192,--gc-sections,--no-code-in-dinit,--no-dinit-in-serial-mem,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml 
-	${MP_CC_DIR}/xc32-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/ota_bootloader.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
+${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   ../src/bootloader/p32MZ1025W104132_bootloader.ld
+	@${MKDIR} ${DISTDIR} 
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o ${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -DXPRJ_pic32mzw1=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=_min_heap_size=8192,--gc-sections,--no-code-in-dinit,--no-dinit-in-serial-mem,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--memorysummary,${DISTDIR}/memoryfile.xml -mdfp="${DFP_DIR}"
+	${MP_CC_DIR}/xc32-bin2hex ${DISTDIR}/ota_bootloader.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
 endif
 
 
@@ -556,5 +556,13 @@ endif
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
-	${RM} -r build/pic32mzw1
-	${RM} -r dist/pic32mzw1
+	${RM} -r ${OBJECTDIR}
+	${RM} -r ${DISTDIR}
+
+# Enable dependency checking
+.dep.inc: .depcheck-impl
+
+DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
+ifneq (${DEPFILES},)
+include ${DEPFILES}
+endif
