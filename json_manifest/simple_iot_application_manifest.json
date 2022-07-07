@@ -1,9 +1,9 @@
 {
     "ota": [
             {
-                "Version": 2,
-                "URL": "https://otaimageserver.s3.ap-south-1.amazonaws.com/ota_mqtt_wo_tls_2.bin",
-                "Digest": "392ef2b97cbdf9a5af37102935b9d6f3b9c1206da704a18f4f2ecea11f21ce0c",
+                "Version": 1,
+                "URL": "https://mu-otaserver.s3.amazonaws.com/simple_iot_application.X.production_001.bin",
+                "Digest": "0617c23e50ade3c21fc4210ce01c66ed30c8a6b6992a0d7bc25986b776bd384e",
                 "EraseVer": false
             }
            ]
