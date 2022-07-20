@@ -58,18 +58,18 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 /**Modified : Included various MACRO for MQTT configuration***/ 
 /*****Subscribe topic parameters******/
 #define     MQTT_SUB_QOS                    1
-#define     MQTT_LED_CONTROL_SUB_TOPIC      ""
-#define     MQTT_OTA_TRIGGER_SUB_TOPIC      ""
+#define     MQTT_LED_CONTROL_SUB_TOPIC      "../feeds/led-control"
+#define     MQTT_OTA_TRIGGER_SUB_TOPIC      "../feeds/ota-trigger"
 
 /*****Publish topic parameters******/
 #define     MQTT_MAX_PUB_TOPIC                   2 
 #define     MQTT_DEF_PUB_RETAIN             false
 #define     MQTT_DEF_PUB_QOS                1
-#define     MQTT_SWITCH_STATE_PUB_TOPIC     ""
-#define     MQTT_APP_VERSION_PUB_TOPIC      ""
+#define     MQTT_SWITCH_STATE_PUB_TOPIC     "../feeds/switch-state"
+#define     MQTT_APP_VERSION_PUB_TOPIC      "../feeds/firmware-version"
  
 /*****MQTT Broker parameters******/
-#define     MQTT_BROKER_SERVER_PORT         1883
+#define     MQTT_BROKER_SERVER_PORT         8883
 #define     MQTT_BROKER_CLEAN_SESSION       true
 #define     MQTT_BROKER_NAME                "io.adafruit.com"
 #define     MQTT_BROKER_USER_NAME           ""

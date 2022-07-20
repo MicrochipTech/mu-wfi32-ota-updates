@@ -52,13 +52,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include "app.h"
 #include "app_mqtt.h"
-   
-
-#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
 #include "system/mqtt/sys_mqtt.h"
 #include "system/sys_time_h2_adapter.h"
 #include "string.h"
-#endif
 
 // *****************************************************************************
 // *****************************************************************************
@@ -66,11 +62,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME
 static uint32_t g_lastPubTimeout = 0;
 #define MQTT_PERIOIDC_PUB_TIMEOUT   5 //Sec ; if the value is 0, Periodic Publish will disable
 #define MQTT_PUB_TIMEOUT_CONST (MQTT_PERIOIDC_PUB_TIMEOUT * SYS_TMR_TickCounterFrequencyGet())
-#endif
 
 // define Application Version, based on whether OTA Service is part of project
 #if defined(SYS_OTA_APP_VER_NUM)
@@ -111,9 +105,6 @@ APP_DATA appData;
 // Section: Application Local Functions
 // *****************************************************************************
 // *****************************************************************************
-/**Modified : Modified MACRO name to map with MQTT_APP_VERSION_PUB_TOPIC.***/ 
-/** Originally, it was  #ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME***/
-#ifdef MQTT_APP_VERSION_PUB_TOPIC
 
 void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
 {
@@ -154,7 +145,6 @@ void APP_CheckTimeOut(uint32_t timeOutValue, uint32_t lastTimeOut)
 		g_lastPubTimeout = SYS_TMR_TickCountGet(); 
 	}
 }
-#endif
 
 
 /* TODO:  Add any necessary local functions.
@@ -233,12 +223,9 @@ void APP_Tasks ( void )
     }
 
 	APP_MQTT_Tasks(); 
-    
-/**Modified : Modified MACRO name to map with MQTT_APP_VERSION_PUB_TOPIC.***/ 
-/** Originally, it was  #ifdef SYS_MQTT_DEF_PUB_TOPIC_NAME***/
-#ifdef MQTT_APP_VERSION_PUB_TOPIC		
-	APP_CheckTimeOut(MQTT_PUB_TIMEOUT_CONST, g_lastPubTimeout);
-#endif
+		
+	// Periodically update the firmware application version
+    APP_CheckTimeOut(MQTT_PUB_TIMEOUT_CONST, g_lastPubTimeout);
 }
 
 

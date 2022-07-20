@@ -331,7 +331,7 @@ void APP_MQTT_Connect(void){
     memset(&g_sTmpSysMqttCfg, 0, sizeof (g_sTmpSysMqttCfg));
     psMqttCfg = &g_sTmpSysMqttCfg;
     psMqttCfg->sBrokerConfig.autoConnect = false;
-    psMqttCfg->sBrokerConfig.tlsEnabled = false;
+    psMqttCfg->sBrokerConfig.tlsEnabled = true;
     strcpy(psMqttCfg->sBrokerConfig.brokerName, MQTT_BROKER_NAME);
     strcpy(psMqttCfg->sBrokerConfig.username, MQTT_BROKER_USER_NAME);
     strcpy(psMqttCfg->sBrokerConfig.password, MQTT_BROKER_PASSWORD);
